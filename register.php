@@ -22,17 +22,24 @@
 <body class="text-center">
     <form class="form-signin">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
-        <h1 class="h3 mb-3 font-weight-normal">Become a masher, <a href="register.php" style="color:grey; text-decoration:none;">Sign up</a> </h1>
+        <h1 class="h3 mb-3 font-weight-normal">Already have an account? <a href="login.php" style="color:grey; text-decoration:none;">Sign in</a> </h1>
+        </h1>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+        <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
+        <label for="dateOfBirth" class="sr-only"> Date of Birth</label>
+        <input type="date" id="birthday" class="form-control" placeholder="Day" required>
+
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
     </form>
 </body>
