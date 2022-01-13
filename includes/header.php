@@ -33,7 +33,7 @@
       </ul>
     </div>
     <div class="mx-auto order-0">
-      <a class="navbar-brand" href="index.php"><img class="logo" style="height: 50px; width: 100px;" src="img/Logo.png" alt="Mash"></a>
+      <a class="navbar-brand" href="index.php"><img class="logo" style="max-height: 60px; max-width: 150px;" src="img/WhiteLogo.png" alt="Mash"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
       </button>

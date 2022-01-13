@@ -2,7 +2,7 @@
   <footer class="footer mr-auto navbar-dark">
     <div class="row">
       <div class="col-12 col-md">
-      <a class="logo" href="index.php"><img class="logo" style="height: 50px; width: 100px;" src="img/Logo.png" alt="Mash"></a>
+      <a class="logo" href="index.php"><img class="logo" style="height: 25px; width: 80px;" src="img/WhiteLogo.png" alt="Mash"></a>
         <small class="d-block mb-3 text-muted">© 2022</small>
       </div>
       <div class="col-6 col-md text-white">
