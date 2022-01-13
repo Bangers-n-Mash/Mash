@@ -6,32 +6,31 @@ include('includes/header.php');
 
 ?>
 
-<main role="main">
-
-    <div class="album py-5 bg-light">
-        <div class="container-fluid">
-
-            <div class="row">
-                <div class="image-block col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid" style="min-height:100%;">
+    <div class="row">
+        <div class="image-block col-sm-4" style="background: url(img/city1.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-8" style="background: url(img/city2.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-4" style="background: url(img/city3.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-4" style="background: url(img/city4.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-4" style="background: url(img/city5.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-8" style="background: url(img/city6.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>
+        </div>
+        <div class="image-block col-sm-4" style="background: url(img/city7.jpg) no-repeat center top;background-size:cover;">
+            <p> Image Info </p>            
         </div>
     </div>
-
-</main>
+</div>
 
 <?php
 
