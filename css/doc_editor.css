@@ -1,0 +1,29 @@
+body {
+    overflow-x: hidden;
+}
+.info button { 
+    text-align: center;
+}
+.info .dropdown-menu a {
+    color: #212529;
+}
+
+.editor {
+    max-width: 80vw;
+}
+
+#editor {
+    display: block;
+    padding: 10px;
+    min-height: 70vh;
+    height: 100%;
+    font-size: large;
+}
+.sidebar {
+    width: auto;
+    padding: 20px;
+    margin: 30px;
+}
+.sidebar button {
+    margin: 10px 0;
+}
