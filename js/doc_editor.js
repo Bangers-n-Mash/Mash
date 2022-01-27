@@ -6,23 +6,36 @@ let quillOptions = {
 }
 var quill = new Quill('#editor', quillOptions);
 
-quill.on('selection-change', function(range, oldRange, source) {
-    if (range) {
-      if (range.length == 0) {
-        console.log('User cursor is on', range.index);
-      } else {
-        var text = quill.getText(range.index, range.length);
-        console.log('User has highlighted', text);
-      }
-    } else {
-      console.log('Cursor not in the editor');
-    }
-});
+quill.on('editor-change', function (eventName, ...args) {
+    console.log(args);
+    let delta = args[0];
+    let oldDelta = args[1];
+    let source = args[2];
 
-quill.on('editor-change', function(eventName, ...args) {
     if (eventName === 'text-change') {
-      // args[0] will be delta
+        if (source == 'api') {            
+            console.log("An API call change.");
+        } else if (source == 'user') {
+            let changeIndex = delta.ops[0].retain;
+            let changes = delta.ops.slice(1);
+            changes.forEach(element => {
+                let changeType = Object.keys(element)[0];
+                let change = Object.values(element)[0];
+                let attributes = element.attributes;
+                console.log("A user " + changeType + " '" + change + "' at index: " + changeIndex  + " with attributes " + JSON.stringify(attributes));
+            });
+        }
     } else if (eventName === 'selection-change') {
-      // args[0] will be old range
+        let range = delta;
+        if (range && source == 'user') {
+            if (range.length == 0) {
+                console.log('User cursor is on', range.index);
+            } else {
+                var text = quill.getText(range.index, range.length);
+                console.log('User has highlighted', text);
+            }
+        } else {
+            console.log('Cursor not in the editor');
+        }
     }
 });
