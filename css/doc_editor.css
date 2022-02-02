@@ -9,6 +9,7 @@ body {
 }
 
 .editor {
+    width: auto;
     max-width: 80vw;
 }
 
@@ -21,8 +22,8 @@ body {
 }
 .sidebar {
     width: auto;
+    height: 100%;
     padding: 20px;
-    margin: 30px;
 }
 .sidebar button {
     margin: 10px 0;
