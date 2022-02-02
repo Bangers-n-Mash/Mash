@@ -6,6 +6,8 @@ include('includes/header.php');
 
 ?>
 
+<script src="dist/bundle.js"></script>
+
 <div class="wrapper">
 
 		<nav aria-label="Main Menu" class="main_menu" id="main_menu"></nav>
