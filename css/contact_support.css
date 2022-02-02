@@ -1,0 +1,31 @@
+section {
+    margin-top: 3rem;
+    max-width: 850px !important;
+}
+section:last-of-type {
+    margin-bottom: 3rem;
+}
+
+figure > blockquote{
+    font-style:italic; 
+    background-color:rgb(0,0,0,0.2);
+    border-radius: 2px;
+    padding: 1rem 2rem;
+    color: #3b637a79;
+    color: #212529;
+    font-size: medium;
+}
+/* 
+figcaption {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+} */
+
+ul{
+    padding-left: 0;
+}
+p, form, blockquote {
+    font-size: 1.2rem;
+    margin-left: 15px;
+}
