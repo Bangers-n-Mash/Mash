@@ -24,6 +24,9 @@ include('includes/header.php');
             <label for="description">Description:</label>
             <textarea name="description" id="description" rows="4" columns="50">File description...</textarea>
             <br>
+            <label for="description">Private</label>
+            <input type="checkbox" id="private" placeholder="FALSE"> </input>
+            <br>
             <input type="submit" value="Submit and Upload" name="submit">
 
         </form>

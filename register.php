@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+include('includes/connect_DB.php');
+include('includes/header.php');
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -26,12 +34,16 @@
         </h1>
         <label for="inputUsername" class="sr-only">Username</label>
         <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        
         <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
+        
         <label for="dateOfBirth" class="sr-only"> Date of Birth</label>
         <input type="date" id="birthday" class="form-control" placeholder="Day" required>
 
@@ -43,5 +55,5 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
     </form>
 </body>
-
+<?php
 </html>
