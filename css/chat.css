@@ -1,28 +1,105 @@
+.chat#overlay {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+}
+
+/* PANEL */
+.chat-panel {
+    max-height: 100vh;
+    height: fit-content;
+    margin-top: auto;
+    overflow-y: auto;
+
+}
 .chat-panel-selector>button{
     border-radius: 0;
     padding: 1em 0;
 }
-
+.chat-panel-contactlist {
+    overflow-y: auto;
+    height: auto;
+}
+.chat-panel-contact {
+    border-left-width: 0 !important;
+}
+.chat-panel-menu {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+}
 .contact-lastmsg{
     overflow: hidden;
     line-height: 1.4em;
     text-overflow: ellipsis;
     height: 3.1em;
 }
-.chat-panel-contactlist {
-    overflow-y: scroll;
-}
-
-.toast-container {
-    position:absolute;
-    bottom: 50;
-    right:0;
-}
+/* STATUS */
 .dropdown-item:hover {
     background-color: rgb(107, 114, 129) !important;
 }
-
 #status-select {
     text-decoration: none;
     color: #212529;
+}
+/* MESSAGE WINDOW */
+#chat-card {
+    transition: all 0.5s ease;
+}
+.chat-card {
+    position: absolute;
+    bottom: 0 !important;
+    height: 40vh;
+    width: 500px;
+    /* border: none !important; */
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin: 0 80px 0 0;
+    background-color: white;
+
+}
+.chat-card-header {
+    background-color:#212529;
+    color: cornsilk;
+}
+.chat-card-messages {
+    border-left: 1px rgba(102, 111, 121, 0.438) solid;
+    overflow-y: auto;
+}
+.chat-card-input {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: rgba(102, 111, 121, 0.438);
+}
+.chat-card-input input {
+    height: 50px;
+    border: none;
+}
+.chat-card-input button {
+    height: 50px;
+    background-color: #212529;
+}
+.chat-card li {
+    list-style-type: none;
+    display: flex;
+}
+.chat-card li :first-child {
+    height: fit-content;
+}
+.chat-card li :last-child{
+    text-align: right;
+    align-self: flex-start;
+    margin-left: auto;
+    font-size: small;
+}
+/* POP-UPS */
+.toast-container {
+    position:absolute;
+    bottom: 50;
+    right:20;
+    transition: all 0.5s ease-out;
 }
