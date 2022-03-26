@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- Changed the bootstrap link to a newer version as the bottom one didn't have some options I used.
   I think (didn't check though) this new one is backwards compatible. However if you notice some strange styling issues this might be the culprit -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
@@ -29,10 +29,16 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link <?php if ($currentPage == 'movie') {
-                                echo 'active';
-                              } ?>" href="booking.php">Link<span class="sr-only">(current)</span></a>
-        </li>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Page Links
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="artwork.php">Artwork</a>
+            <a class="dropdown-item" href="document_editor.php">Documents</a>
+            <a class="dropdown-item" href="file_upload.php">Upload</a>
+            <a class="dropdown-item" href="faq.php">FAQ</a>
+            <a class="dropdown-item" href="contact_support.php">Support</a>
+          </div>
       </ul>
     </div>
     <div class="mx-auto order-0">
@@ -50,7 +56,7 @@
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>
           </a>
 
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="login.php">Login</a>
             <a class="dropdown-item" href="register.php">Register</a>
           </div>
