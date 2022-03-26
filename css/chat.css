@@ -1,0 +1,28 @@
+.chat-panel-selector>button{
+    border-radius: 0;
+    padding: 1em 0;
+}
+
+.contact-lastmsg{
+    overflow: hidden;
+    line-height: 1.4em;
+    text-overflow: ellipsis;
+    height: 3.1em;
+}
+.chat-panel-contactlist {
+    overflow-y: scroll;
+}
+
+.toast-container {
+    position:absolute;
+    bottom: 50;
+    right:0;
+}
+.dropdown-item:hover {
+    background-color: rgb(107, 114, 129) !important;
+}
+
+#status-select {
+    text-decoration: none;
+    color: #212529;
+}
