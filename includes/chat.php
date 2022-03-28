@@ -4,7 +4,7 @@
 
     <div class="chat-wrapper d-flex align-items-end justify-content-end h-100">
 
-        <div id="chat-card" class="chat-card d-flex flex-column" tabindex="1" aria-labelledby="chat-card-label">
+        <div id="chat-card" style="visibility:hidden" class="chat-card d-flex flex-column" tabindex="1" aria-labelledby="chat-card-label">
             <div class="chat-card-header d-flex align-items-center p-2">
                 <h6 id="chat-card-label" class="chat-card-username chat-card-title me-auto">Username</h6>
                 <button id="chat-card-close" class="btn-close btn-close-white chat-card-close" type="button" aria-label="Close"></button>
@@ -281,7 +281,7 @@
 
     <div class="position-absolute end-0 bottom-0">
         <button class="chat-bubble me-3" style="background-color: transparent; border:none;" data-bs-toggle="offcanvas" data-bs-target="#chatbar" aria-controls="chatbar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="blue" class="bi bi-chat-square-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-chat-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
             </svg>
         </button>
@@ -339,5 +339,6 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
     <script src="../js/chat.js"></script>
 </div>
