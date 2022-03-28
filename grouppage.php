@@ -3,14 +3,7 @@
 session_start();
 
 include('includes/header.php');
-//include('includes/connect_DB.php')
-
-
-
-
-
-
-
+include('includes/connect_DB.php')
 
 ?>
 <!doctype html>
@@ -60,6 +53,11 @@ include('includes/header.php');
             <div class="text-center mb-5">
                 
             <!-- script needed here -->
+            <php? 
+            $groups =mysqli_query($con,"SELECT accountID FROM noOfMemGroup WHERE accountID = " )
+            echo "<h2 class="fw-bolder">" . $_currentGroup ."Profile</h2>";
+            ?>
+            
                 <h2 class="fw-bolder">GROUP's Profile</h2>  
                 
 

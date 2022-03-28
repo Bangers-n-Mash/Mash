@@ -3,11 +3,7 @@
 session_start();
 
 include('includes/header.php');
-//include('includes/connect_DB.php')
-
-
-
-
+include('includes/connect_DB.php')
 
 
 
@@ -31,6 +27,8 @@ include('includes/header.php');
 
                 <p class="lead mb-0">Here is a list of what groups you are in.</p>
 
+                <?php
+                ?>
 
                 <a href="user.php" role="button"  style=" background-color: #212529" class="btn btn-primary btn-md float-start">Back</a>
                 <a href="group_cj.php" role="button" style=" background-color: #212529" class="btn btn-primary btn-md float-end">Create/Join Group</a>

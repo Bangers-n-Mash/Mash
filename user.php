@@ -3,7 +3,7 @@
 session_start();
 
 include('includes/header.php');
-//include('includes/connect_DB.php')
+include('includes/connect_DB.php')
 
 
 
@@ -27,10 +27,14 @@ include('includes/header.php');
             <div class="text-center mb-5">
                 
             <!-- script needed here -->
+                <?php
+                ?>
                 <h2 class="fw-bolder">USERNAMEHERE's Profile</h2>  
                 
 
                 <p class="lead mb-0">Here, you will be able to manage your account, check what groups you are in, and what projects you are undertaking.</p>
+                <?php
+                ?>
             
             </div>
 
