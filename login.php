@@ -24,14 +24,14 @@
     require('includes/connect_DB.php');
     session_start();
     
-    $email = mysqli_real_escape_string($link, $_POST['inputEmail']);
+    $username = mysqli_real_escape_string($link, $_POST['username']);
     $password = mysqli_real_escape_string($link, $_POST['inputPassword']);
 
-    $query = "SELECT * FROM 'artAccount' WHERE email='$email' AND password='" . md5($password) ."'";
+    $query = "SELECT * FROM 'artAccount' WHERE username='$username' AND password='" . md5($password) ."'";
     $result = mysqli_query($link, $query) or die(my_sql_error());
     $rows = mysqli_num_rows($result);
     if ($rows == 1){
-        $_SESSION['email'] = $email;
+        $_SESSION['username'] = $username;
     }
     else{
         echo "<div class='form'>
