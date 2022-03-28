@@ -20,26 +20,28 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="includes/signup.php" method="POST">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
         <h1 class="h3 mb-3 font-weight-normal">Already have an account? <a href="login.php" style="color:grey; text-decoration:none;">Sign in</a> </h1>
         </h1>
+        <label for="firstName" class="sr-only">First name</label>
+        <input name="firstname" type="text" id="firstName" class="form-control" placeholder="First name" required autofocus>
+        <label for="lastName" class="sr-only">Last name</label>
+        <input name="lastname" type="text" id="lastName" class="form-control" placeholder="Last name" required>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        <input name="username" type="username" id="inputUsername" class="form-control" placeholder="Username" required>
+        <label for="email" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
-        <label for="dateOfBirth" class="sr-only"> Date of Birth</label>
-        <input type="date" id="birthday" class="form-control" placeholder="Day" required>
+        <input name="password2" type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
 
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Register</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
     </form>
 </body>
