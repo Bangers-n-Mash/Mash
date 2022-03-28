@@ -7,13 +7,30 @@ let quillOptions = {
 var quill = new Quill('#editor', quillOptions);
 
 quill.on('editor-change', function (eventName, ...args) {
-    console.log(args);
-    let delta = args[0];
-    let oldDelta = args[1];
-    let source = args[2];
+    socket.emit('doc:event', { "eventName": eventName, "args": args });
+});
 
-    if (eventName === 'text-change') {
-        if (source == 'api') {            
+const socket = io("http://localhost:8080", {
+    withCredentials: true,
+    extraHeaders: {
+        "ws-header": "mash"
+    }
+});
+
+// connection with server
+socket.on('connect', function () {
+    console.log('Connected to Server')
+});
+
+// message listener from server
+socket.on('doc:update', (payload) => {
+    console.log(payload.args);
+    let delta = payload.args[0];
+    let oldDelta = payload.args[1];
+    let source = payload.args[2];
+
+    if (payload.eventName === 'text-change') {
+        if (source == 'api') {
             console.log("An API call change.");
         } else if (source == 'user') {
             let changeIndex = delta.ops[0].retain;
@@ -22,20 +39,24 @@ quill.on('editor-change', function (eventName, ...args) {
                 let changeType = Object.keys(element)[0];
                 let change = Object.values(element)[0];
                 let attributes = element.attributes;
-                console.log("A user " + changeType + " '" + change + "' at index: " + changeIndex  + " with attributes " + JSON.stringify(attributes));
+                console.log("A user " + changeType + " '" + change + "' at index: " + changeIndex + " with attributes " + JSON.stringify(attributes));
             });
         }
-    } else if (eventName === 'selection-change') {
+    } else if (payload.eventName === 'selection-change') {
         let range = delta;
         if (range && source == 'user') {
             if (range.length == 0) {
                 console.log('User cursor is on', range.index);
             } else {
-                var text = quill.getText(range.index, range.length);
-                console.log('User has highlighted', text);
+                console.log('User has highlighted range: [' + range.index + ':' + (range.index + range.length) + ']');
             }
         } else {
             console.log('Cursor not in the editor');
         }
     }
+});
+
+// when disconnected from server
+socket.on('disconnect', function () {
+    console.log('Disconnect from server');
 });
