@@ -7,7 +7,7 @@
 const socketIO = require('socket.io');
 const { Server } = require("socket.io");
 
-const port = process.env.PORT||8080; // setting the port 
+const port = process.env.PORT || 8080; // setting the port 
 
 const io = new Server(port, {
   serveClient: false,
@@ -19,27 +19,17 @@ const io = new Server(port, {
 });
 
 let socketRouter = require('./websocket_router');
+let auth = require('./websocket_auth');
 
 const onConnection = (socket) => {
-    console.log('New user connected');
-    //emit message from server to user
-    socket.emit('newMessage', {
-        from: 'jen@mds',
-        text: 'hepppp',
-        createdAt: 123
-    });
-
-    // listen for message from user
-    socket.on('createMessage', (newMessage) => {
-        console.log('newMessage', newMessage);
-    });
-
-    // add middleware
-    socketRouter.disconnect(io, socket);
-    socketRouter.docEvent(io, socket);  
+  console.log('New user connected');
+  // add middleware
+  socketRouter.disconnect(io, socket);
+  socketRouter.docEvent(io, socket);
+  socketRouter.chatEvent(io, socket);
 }
 
-
+// io.use((socket, next) => auth(socket, next));
 // make connection with user from server side
 io.on('connection', onConnection);
 
