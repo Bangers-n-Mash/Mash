@@ -35,8 +35,16 @@ include('includes/header.php');
         <label for="inputUsername" class="sr-only">Username</label>
         <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 
+
+
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+
+        <label for="forename" class="sr-only">Forename</label>
+        <input type="forename" id="forename" class="form-control" placeholder="Forename" required>
+
+        <label for="surname" class="sr-only">Surname</label>
+        <input type="surname" id="surname" class="form-control" placeholder="Surname" required>
 
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -47,6 +55,7 @@ include('includes/header.php');
         <label for="dateOfBirth" class="sr-only"> Date of Birth</label>
         <input type="date" id="birthday" class="form-control" placeholder="Day" required>
 
+        
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
