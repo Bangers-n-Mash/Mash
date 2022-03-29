@@ -11,19 +11,18 @@ $group_name = $_POST["groupName"];
 $filename = $_FILES["fileToUpload"]["name"];
 $tempname = $_FILES["fileToUpload"]["tmp_name"];    
 $folder = "img/".$filename;
-      
-
-
 
 $query = "INSERT into 'artGroup'(groupName, groupProfilePicture) VALUES ('$group_name', '$filename')";
 
 $result =mysqli_query($link,$query);
  
    if (move_uploaded_file($tempname, $folder))  {
-    $msg = "Image uploaded successfully";
-}else{
-    $msg = "Failed to upload image";
-}
+       $msg = "Image uploaded successfully";
+    }
+    else
+    {
+        $msg = "Failed to upload image";
+    }
 
 $group_id = mysqli_insert_id($link);
 $account_id = $_SESSION['accountid'];

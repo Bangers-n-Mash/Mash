@@ -15,8 +15,8 @@
       <div class="col-6 col-md text-white">
         <h5>Account</h5>
         <ul class="list-unstyled text-small">
-          <?php if (isset($_SESSION['user_id'])) : ?>
-            <li><a class="text-muted" href="user_login.php">My Account</a></li>
+          <?php if (isset($_SESSION['username'])) : ?>
+            <li><a class="text-muted" href="/user.php">My Account</a></li>
           <?php else : ?>
             <li><a class="text-muted" href="/login.php">My Account</a></li>
           <?php endif ?>

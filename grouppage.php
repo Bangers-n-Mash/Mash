@@ -53,7 +53,7 @@ include('includes/connect_DB.php')
                 
             <!-- script needed here -->
             <php? 
-            $groups =mysqli_query($con,"SELECT accountID FROM noOfMemGroup WHERE accountID = " )
+            $q = "SELECT accountID FROM artAccount WHERE username='$u'";
             echo "<h2 class="fw-bolder">" . $_currentGroup ."Profile</h2>";
             ?>
             
@@ -106,14 +106,6 @@ include('includes/connect_DB.php')
 </div>
 
 </div>
-
-
-
-
-
-
-
-        
 
     </div>
     </section>
