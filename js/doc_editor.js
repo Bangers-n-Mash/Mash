@@ -23,7 +23,6 @@ const socket = io("http://localhost:8080", {
 // connection with server
 socket.on('connect', function () {
     console.log('Connected to Server')
-
 });
 
 // message listener from server
