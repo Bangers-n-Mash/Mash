@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <link rel="stylesheet" href="admin/css/styles.css">
     <link rel="stylesheet" href="css/login-register.css">
-
 </head>
 
 
