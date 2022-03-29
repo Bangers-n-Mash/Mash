@@ -26,8 +26,8 @@ include('includes/header.php');
 
 </head>
 
-<body class="text-center" action = "registeration.php" method="post">
-    <form class="form-signin">
+<body class="text-center">
+    <form class="form-signin"  action = "registeration.php" method="post">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
         <h1 class="h3 mb-3 font-weight-normal">Already have an account? <a href="login.php" style="color:grey; text-decoration:none;">Sign in</a> </h1>
         </h1>
