@@ -1,12 +1,12 @@
 // ########## INTERFACE ##########
-var chat = document.getElementById('chat-wrapper');
+let chat = document.getElementById('chat-wrapper');
 
-var toastTrigger = document.getElementById('toastTestBtn')
-var live = document.querySelectorAll('.msg-toast');
-var i = 0;
+let toastTrigger = document.getElementById('toastTestBtn');
+let live = document.querySelectorAll('.msg-toast');
+let i = 0;
 if (toastTrigger) {
     toastTrigger.addEventListener('click', function () {
-        var toast = new bootstrap.Toast(live[i])
+        let toast = new bootstrap.Toast(live[i])
         toast.show()
         i++;
         if (i == live.length)
@@ -14,9 +14,9 @@ if (toastTrigger) {
     })
 }
 
-var statusLabel = document.querySelector('#status');
+let statusLabel = document.querySelector('#status');
 let statusIcon = document.getElementById('status-icon');
-var statusList = document.querySelectorAll('.status-select-list .dropdown-item');
+let statusList = document.querySelectorAll('.status-select-list .dropdown-item');
 statusList.forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ chatPanel.addEventListener('hide.bs.offcanvas', (e) => {
 
 
 let chatMessages = chatCard.querySelector('.chat-card-messages').children[0];
-let chatCardUsername = chatCard.querySelector('#chat-card-label');
+let chatCardLabel = chatCard.querySelector('#chat-card-label');
 let createMessageElement = (msg, time) => {
     let newMsg = document.createElement('li');
     newMsg.classList.add('card-message', 'list-group-item');
@@ -86,12 +86,14 @@ let createMessageNotification = (msg, user, time) => {
     let newNotification = document.createElement('div');
     newNotification.outerHTML = notificationHTML;
     toastContainer.appendChild(newNotification);
+    let toastNotification = new bootstrap.Toast(newNotification);
+    toastNotification.show();
 }
 let contactsList = document.querySelectorAll('.chat-panel-contact');
 contactsList.forEach(contact => {
     contact.addEventListener('click', (e) => {
         let username = contact.querySelector('.contact-username').children[0].innerHTML;
-        chatCardUsername = username;
+        chatCardLabel.innerHTML = username;
 
         /* TODO pull messages from the DB and populate the chat card
         const dbMessages = []; // query
@@ -132,6 +134,7 @@ chatSendBtn.addEventListener('click', (e) => {
     if (chatMsg.value !== "") {
         socket.emit('chat:msg', { user: socket.auth, msg: chatMsg.value });
         chatMessages.appendChild(createMessageElement(chatMsg.value, 'just now'));
+        chatMsg.value = "";
     }
 });
 
@@ -176,6 +179,7 @@ socket.on('chat:user_connected', (user) => {
 
 socket.on('chat:message', (payload) => {
     console.log(payload);
+
 })
 
 // when disconnected from server

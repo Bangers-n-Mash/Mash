@@ -111,6 +111,7 @@ function createUser($dbConn, $firstname, $lastname, $username, $email, $password
 
 function loginUser($dbConn, $username, $password)
 {
+    session_destroy();
     $errorPath = "";
 
     $error = emptyInput($username);
@@ -129,7 +130,7 @@ function loginUser($dbConn, $username, $password)
         $hashedPassword = $exists['accountPassword'];
         if (password_verify($password, $hashedPassword)) {
             session_start();
-            $_SESSION['uid'] = $exists['accountID'];
+            $_SESSION['accountID'] = $exists['accountID'];
             $_SESSION['username'] = $exists['username'];
             $_SESSION['email'] = $exists['email'];
             $_SESSION['firstname'] = $exists['forename'];
