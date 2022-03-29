@@ -68,23 +68,28 @@ let createMessageElement = (msg, time) => {
     return newMsg;
 }
 
-const notificationInnerHTML = '<div id=\"msg-toast\" class=\"toast msg - toast fade hide\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\">'
-    + '<div class=\"toast-header msg-toast-header contact-detail\">'
+const notificationInnerHTML = '<div class=\"toast-header msg-toast-header contact-detail\">'
     + '<div class=\"contact-detail-avatar me-3\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30\" height=\"30\" fill=\"currentColor\" class=\"bi bi-person-circle\" viewBox=\"0 0 16 16\">'
     + '<path d=\"M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\"></path>'
     + '<path fill-rule=\"evenodd\" d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z\"></path></svg></div>' +
-    +'<strong class=\"contact-detail-username me-auto\">%username%</strong>'
-    + '<small class=\"msg-toast-time text-muted\">%time%</small>'
+    +'<strong class=\"contact-detail-username me-auto\"> %username% </strong>'
+    + '<small class=\"msg-toast-time text-muted\"> %time% </small>'
     + '<button class=\"btn-close\" type=\"button\" data-bs-dismiss=\"toast\" aria-label=\"Close\"></button></>'
-    + '<div class=\"toast-body msg-toast-body\">%message%</div></div>';
+    + '<div class=\"toast-body msg-toast-body\"> %message% </div>';
 
 let createMessageNotification = (msg, user, time) => {
-    let notificationHTML = notificationInnerHTML;
-    notificationHTML.replace('%username%', user.username);
-    notificationHTML.replace('%message%', msg);
-    notificationHTML.replace('%time%', time);
+    console.log(msg)
+    console.log(user)
+    console.log(time)
     let newNotification = document.createElement('div');
-    newNotification.outerHTML = notificationHTML;
+    newNotification.innerHTML = notificationInnerHTML;
+    newNotification.innerHTML.replace(/%username%/, user);
+    newNotification.innerHTML.replace(/%message%/, msg);
+    newNotification.innerHTML.replace(/%time%/, time);
+    newNotification.classList.add('msg-toast', 'toast');
+    newNotification.setAttribute('role', 'alert')
+    newNotification.setAttribute('aria-live', 'assertive')
+    newNotification.setAttribute('aria-atomic', 'true')
     toastContainer.appendChild(newNotification);
     let toastNotification = new bootstrap.Toast(newNotification);
     toastNotification.show();
@@ -130,10 +135,12 @@ chatCardCloseBtn.addEventListener('click', (e) => {
 
 let chatMsg = document.querySelector('.chat-card-input > input');
 let chatSendBtn = document.querySelector('.chat-card-input > button');
+
 chatSendBtn.addEventListener('click', (e) => {
+    let content = chatMsg.value;
     if (chatMsg.value !== "") {
-        socket.emit('chat:msg', { user: socket.auth, msg: chatMsg.value });
-        chatMessages.appendChild(createMessageElement(chatMsg.value, 'just now'));
+        socket.emit('chat:message', { content, to: chatCardLabel.innerHTML });
+        chatMessages.appendChild(createMessageElement(content, 'just now'));
         chatMsg.value = "";
     }
 });
@@ -145,6 +152,10 @@ const socket = io("http://localhost:8080", {
     withCredentials: true,
     extraHeaders: {
         "ws-header": "mash"
+    },
+    auth: {
+        username: sessionStorage.username,
+        accountID: sessionStorage.accountID
     }
 });
 
@@ -162,7 +173,6 @@ socket.on("connect_error", (err) => {
 socket.on('chat:users', (users) => {
     users.forEach((user) => {
         user.self = user.userID === socket.id;
-        // initReactiveProperties(user);
     });
     this.users = users.sort((a, b) => {
         if (a.self) return -1;
@@ -173,14 +183,13 @@ socket.on('chat:users', (users) => {
 })
 
 socket.on('chat:user_connected', (user) => {
-    // initReactiveProperties(user);
     this.users.push(user);
 })
 
-socket.on('chat:message', (payload) => {
-    console.log(payload);
-
-})
+socket.on('chat:message', ({ content, from }) => {
+    chatMessages.appendChild(createMessageElement(content, 'just now'));
+    createMessageNotification(content, from, Date.now().toString());
+});
 
 // when disconnected from server
 socket.on('disconnect', function () {
