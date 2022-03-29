@@ -11,8 +11,8 @@
 
 
     <section class="editor mx-auto">
-
-        <h1>Document Editor</h1>
+        <h1 class="m-3">Document Editor</h1>
+        
 
         <div id="toolbar-container" class="ql-toolbar ql-snow">
             <span class="ql-formats">
@@ -156,10 +156,17 @@
     </section>
 
     <section class="sidebar">
+        
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
         </button>
         <div class="collapse collapse-horizontal" id="sidebar">
+            <div class="d-inline-flex flex-row align-items-center justify-content-evenly p-1">
+                <button class="btn btn-primary m-1">Import file</button>
+                <button class="btn btn-primary m-1">Export file</button>
+                <button class="btn btn-primary m-1">Save changes</button>
+            </div>
+
             <h4>People in this document</h4>
             <ul>
                 <li>You</li>
@@ -168,15 +175,22 @@
 
         </div>
     </section>
+    <form id='message-form'>
+        <input name='message' type="text"placeholder="Message"
+                autofocus autocomplete="off"/>
+        <button >Send</button>
+    </form>
+  
+
 </div>
 
 
 <?php
     include('includes/footer.php');
 ?>
-
 <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 </script>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 <script src="./js/doc_editor.js"></script>
