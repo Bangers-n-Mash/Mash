@@ -1,10 +1,28 @@
+<?php
+require_once 'connect_DB.php';
+$query = "SELECT account.accountID, username, profilePicture FROM artaccount as account INNER JOIN friendlist as friendTable ON account.accountID = friendTable.friend_id WHERE friendTable.accountID = ?;";
+$prepStmt = mysqli_stmt_init($link);
+if (!mysqli_stmt_prepare($prepStmt, $query)) {
+    echo ("Error loading friendlist");
+    mysqli_stmt_close($prepStmt);
+    exit();
+}
+mysqli_stmt_bind_param($prepStmt, "i", $_SESSION['accountID']);
+mysqli_stmt_execute($prepStmt);
+$results = mysqli_stmt_get_result($prepStmt);
+
+//TODO check if we are on a collaboration page and pull list of collaborators to the other chat pane
+
+?>
+
 <link rel="stylesheet" href="../css/chat.css">
+
 <div id="overlay" class="chat">
     <button type="button" class="btn btn-primary" id="toastTestBtn">Test live msg</button>
 
     <div class="chat-wrapper d-flex align-items-end justify-content-end h-100">
 
-        <div id="chat-card" class="chat-card d-flex flex-column" tabindex="1" aria-labelledby="chat-card-label">
+        <div id="chat-card" style="visibility:hidden" class="chat-card d-flex flex-column" tabindex="1" aria-labelledby="chat-card-label">
             <div class="chat-card-header d-flex align-items-center p-2">
                 <h6 id="chat-card-label" class="chat-card-username chat-card-title me-auto">Username</h6>
                 <button id="chat-card-close" class="btn-close btn-close-white chat-card-close" type="button" aria-label="Close"></button>
@@ -93,150 +111,18 @@
                 </div>
                 <div id="chat-friends" class="chat-panel-contactlist tab-pane fade show active mt-auto" role="tabpanel" aria-labelledby="chat-friends-tab">
                     <ul class="list-group">
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a class="contact-avatar align-self-center" href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Scott Craig</strong></div>
-                                <div class="contact-lastmsg">Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">2</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a class="contact-avatar align-self-center" href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>John Bot</strong></div>
-                                <div class="contact-lastmsg">Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">2</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a class="contact-avatar align-self-center" href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Rob Stewart</strong></div>
-                                <div class="contact-lastmsg">Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">2</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a class="contact-avatar align-self-center" href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Andrew Smith</strong></div>
-                                <div class="contact-lastmsg">Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">2</span>
-                        </li>
 
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Lorem, ipsum.</strong></div>
-                                <div class="contact-lastmsg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, reprehenderit.</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto"></span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Ex, molestiae.</strong></div>
-                                <div class="contact-lastmsg">Non, atque accusantium minus necessitatibus illum maiores facere. Amet, illo!</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">1</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Recusandae, quibusdam.</strong></div>
-                                <div class="contact-lastmsg">Doloribus neque pariatur omnis aliquid asperiores sint laborum delectus dolorem.</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">5</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Ad, laboriosam?</strong></div>
-                                <div class="contact-lastmsg">Illo quod at eos ipsam sunt tenetur odio, minima sapiente.</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">0</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Eius, debitis.</strong></div>
-                                <div class="contact-lastmsg">Veniam impedit corrupti adipisci quas magnam architecto, officia quod tempora.</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">0</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Qui, esse!</strong></div>
-                                <div class="contact-lastmsg">Similique aperiam, sed sit consequatur labore maiores incidunt obcaecati! Assumenda.</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">0</span>
-                        </li>
-                        <li class="chat-panel-contact list-group-item d-flex p-3">
-                            <a href="" class="contact-avatar align-self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                            </a>
-                            <div class="contact-middle d-flex flex-column px-3">
-                                <div class="contact-username"><strong>Maxime, possimus.</strong></div>
-                                <div class="contact-lastmsg">Dicta nemo id ducimus, aspernatur eius perferendis cumque molestiae veritatis?</div>
-                            </div>
-                            <span class="contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto">2</span>
-                        </li>
+                        <?php
+                        while ($row = mysqli_fetch_array($results)) {
+                            echo "<li class=\"chat-panel-contact list-group-item d-flex p-3\">";
+                            echo "<a class=\"contact-avatar align-self-center\" href=\"\">";
+                            echo "<img src=\"" . $row['profilePicture'] . "\" alt=\"Profile picture\"></a>";
+                            echo "<div class=\"contact-middle d-flex flex-column px-3\">";
+                            echo "<div class=\"contact-username\"><strong>" . $row['username'] . "</strong></div>";
+                            echo "<div class=\"contact-lastmsg\">Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur</div></div>";
+                            echo "<span class=\"contact-unreadpill badge bg-primary rounded-pill align-self-start ms-auto\">2</span></li>";
+                        }
+                        ?>
 
                     </ul>
                 </div>
@@ -281,12 +167,12 @@
 
     <div class="position-absolute end-0 bottom-0">
         <button class="chat-bubble me-3" style="background-color: transparent; border:none;" data-bs-toggle="offcanvas" data-bs-target="#chatbar" aria-controls="chatbar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="blue" class="bi bi-chat-square-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-chat-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
             </svg>
         </button>
     </div>
-    <div id="toast-container" class="toast-container p-3" style="z-index: 20;" aria-live="polite" aria-atomic="true">
+    <div id="toast-container" class="toast-container p-3" aria-live="polite" aria-atomic="true">
         <div id="msg-toast" class="toast msg-toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header msg-toast-header contact-detail">
                 <div class="contact-detail-avatar me-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -339,5 +225,6 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
     <script src="../js/chat.js"></script>
 </div>

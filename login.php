@@ -20,23 +20,19 @@
 
 
 <body class="text-center">
-    <form class="form-signin" action = "loginCode.php" method="post">
+    <form class="form-signin" action="includes/signin.php" method="POST">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
         <h1 class="h3 mb-3 font-weight-normal">Become a masher, <a href="register.php" style="color:grey; text-decoration:none;">Sign up</a> </h1>
-        
-        <label for="username" class="sr-only">Username</label>
-        <input type="username" id="username" class="form-control" placeholder="Username" required autofocus>
-
+        <label for="inputEmail" class="sr-only">Username or Email address</label>
+        <input name="username" id="inputEmail" class="form-control" placeholder="Username/Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me </input>
             </label>
         </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
     </form>
 </body>

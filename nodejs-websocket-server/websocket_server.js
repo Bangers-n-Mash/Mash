@@ -19,20 +19,23 @@ const io = new Server(port, {
 });
 
 let socketRouter = require('./websocket_router');
-let auth = require('./websocket_auth');
+let auth = require('./websocket_auth').auth;
 
 const onConnection = (socket) => {
   console.log('New user connected');
+
   // add middleware
+  socketRouter.connect(io, socket);
+  socketRouter.userConnected(io, socket);
   socketRouter.disconnect(io, socket);
   socketRouter.docEvent(io, socket);
   socketRouter.chatEvent(io, socket);
 }
 
-// io.use((socket, next) => auth(socket, next));
 // make connection with user from server side
 io.on('connection', onConnection);
 
+io.use((socket, next) => auth(socket, next));
 
 // server.listen(port);
 console.log('Node.js web server at port ' + port + ' is running.');
