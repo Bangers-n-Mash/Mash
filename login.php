@@ -19,33 +19,9 @@
 
 </head>
 
+
 <body class="text-center">
-    <?php
-    require('includes/connect_DB.php');
-    session_start();
-    
-    $username = mysqli_real_escape_string($link, $_POST['username']);
-    $password = mysqli_real_escape_string($link, $_POST['inputPassword']);
-
-    $query = "SELECT * FROM 'artAccount' WHERE username='$username' AND password='" . md5($password) ."'";
-    $result = mysqli_query($link, $query) or die(my_sql_error());
-    $rows = mysqli_num_rows($result);
-    if ($rows == 1){
-        $_SESSION['username'] = $username;
-    }
-    else{
-        echo "<div class='form'>
-        <h3>Incorrect Username/password.</h3><br/>
-        
-        <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
-
-        </div>";
-    }
-
-    ?>
-
-
-    <form class="form-signin" action = "" method="post">
+    <form class="form-signin" action = "loginCode.php" method="post">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
         <h1 class="h3 mb-3 font-weight-normal">Become a masher, <a href="register.php" style="color:grey; text-decoration:none;">Sign up</a> </h1>
         
