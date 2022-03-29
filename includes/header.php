@@ -49,13 +49,10 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item <?php if ($currentPage == 'account' || $currentPage == 'login' || $currentPage == 'register' || $currentPage == 'forgot_password') {
-                              echo 'active';
-                            } ?> ">
+        <li class="nav-item">
           <a class="nav-link" id="userDropdown" href="#" data-toggle="dropdown" aria-expanded="false" aria-controls="userDropdown">
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>
           </a>
-
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="login.php">Login</a>
             <a class="dropdown-item" href="register.php">Register</a>

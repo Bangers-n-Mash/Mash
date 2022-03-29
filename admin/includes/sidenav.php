@@ -9,11 +9,6 @@
                     <div class="sb-nav-link-icon"><em class="fas fa-tachometer-alt"></em></div>
                     Dashboard
                 </a>
-            
-                <a class="nav-link" href="news.php">
-                    <div class="sb-nav-link-icon"><em class="fas fa-newspaper"></em></div>
-                    News
-                </a>
 
 
                 <div class="sb-sidenav-menu-heading">Management</div>
@@ -24,19 +19,19 @@
 
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFleet" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><em class="fas fa-car"></em></div>
-                    Fleet Management
+                    Group Management
                     <div class="sb-sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
                 </a>
 
                 <div class="collapse" id="collapseFleet" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavManagementPages">
 
-                        <a class="nav-link" href="campus.php">
-                            Campus
+                        <a class="nav-link" href="groups.php">
+                            Groups
                         </a>
 
-                        <a class="nav-link" href="vehicle.php">
-                            Vehicles
+                        <a class="nav-link" href="groupcontent.php">
+                            Content
                         </a>
 
                     </nav>
@@ -44,51 +39,36 @@
 
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooking" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><em class="fas fa-calendar"></em></div>
-                    Booking Management
+                    Content Management
                     <div class="sb-sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
                 </a>
 
                 <div class="collapse" id="collapseBooking" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavBookingPages">
 
-                        <a class="nav-link" href="calendar.php">
-                            Calendar
+                        <a class="nav-link" href="documents.php">
+                            Documents
                         </a>
 
-                        <a class="nav-link" href="booking.php">
-                            Current Bookings
+                        <a class="nav-link" href="artwork.php">
+                            Artwork
                         </a>
 
                     </nav>
                 </div>
 
-                <div class="sb-sidenav-menu-heading">Logs</div>
-                <a class="nav-link" href="checks.php">
-                    <div class="sb-nav-link-icon"><em class="fas fa-search"></em></div>
-                    Vehicle Check Sheets
-                </a>
-                <a class="nav-link" href="trips.php">
-                    <div class="sb-nav-link-icon"><em class="fas fa-map-marker"></em></div>
-                    Trip Logs
-                </a>
-
                 <div class="sb-sidenav-menu-heading">Analytics</div>
 
-                <a class="nav-link" href="subscribers.php">
+                <a class="nav-link" href="collaborators.php">
                     <div class="sb-nav-link-icon"><em class="fas fa-chart-area"></em></div>
                     Users
-                </a>
-
-                <a class="nav-link" href="sessions.php">
-                    <div class="sb-nav-link-icon"><em class="fas fa-table"></em></div>
-                    Vehicles
                 </a>
 
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <?php echo "{$_SESSION['forename']}"; ?>
+            <?php echo "{$_SESSION['username']}"; ?>
         </div>
     </nav>
 </div>

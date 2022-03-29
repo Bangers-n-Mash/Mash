@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['account_level'] == "2") {
+if ($_SESSION['account_type'] == "2") {
     include('includes/admin-header.php');
 } else {
     header("Location: ../login.php");
@@ -37,9 +37,9 @@ if ($_SESSION['account_level'] == "2") {
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-bar mr-1"></i>
-                                Monthly Mileage
+                                Monthly Views
                             </div>
-                            <div class="card-body"><canvas id="myMileageChart" width="100%" height="40"></canvas></div>
+                            <div class="card-body"><canvas id="myViewsChart" width="100%" height="40"></canvas></div>
                         </div>
                     </div>
                 </div>

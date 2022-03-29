@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['account_level'] == "2") {
+if ($_SESSION['account_type'] == "2") {
     include('includes/admin-header.php');
 } else {
     header("Location: ../login.php");

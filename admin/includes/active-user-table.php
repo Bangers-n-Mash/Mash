@@ -1,6 +1,6 @@
 <?php
 
-require('../includes/connect_db.php');
+require('../includes/connect_DB.php');
 
 ?>
 
@@ -14,22 +14,22 @@ require('../includes/connect_db.php');
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Username</th>
                         <th>Forename</th>
                         <th>Surname</th>
                         <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>License Expiry</th>
+                        <th>Creation Date</th>
                         <th>Status</th>
                         <th>Account Type</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
+                        <th>Username</th>
                         <th>Forename</th>
                         <th>Surname</th>
                         <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>License Expiry</th>
+                        <th>Creation Date</th>
                         <th>Status</th>
                         <th>Account Type</th>
                     </tr>
@@ -37,23 +37,23 @@ require('../includes/connect_db.php');
                 <tbody>
 
                     <?php
-                    $g = "SELECT * FROM users";
+                    $g = "SELECT * FROM artaccount";
                     $n = mysqli_query($link, $g);
                     if (mysqli_num_rows($n) > 0) {
                         while ($row = mysqli_fetch_array($n, MYSQLI_ASSOC)) {
                     ?>
                             <tr>
+                                <td><?php echo "{$row['username']}"; ?></td>
                                 <td><?php echo "{$row['forename']}"; ?></td>
                                 <td><?php echo "{$row['surname']}"; ?></td>
                                 <td><?php echo "{$row['email']}"; ?></td>
-                                <td><?php echo "{$row['phone_no']}"; ?></td>
-                                <td><?php echo "{$row['license_expiry']}"; ?></td>
+                                <td><?php echo "{$row['creation_date']}"; ?></td>
                                 <td><?php if ($row['account_status'] == "1") {
                                         echo "Blocked";
                                     } else {
                                         echo "Active";
                                     } ?></td>
-                                <td><?php if ($row['account_level'] == "2") {
+                                <td><?php if ($row['account_type'] == "2") {
                                         echo "Admin";
                                     } else {
                                         echo "User";
@@ -63,7 +63,7 @@ require('../includes/connect_db.php');
                     <?php
                         }
                     }
-                    
+
                     ?>
                 </tbody>
             </table>

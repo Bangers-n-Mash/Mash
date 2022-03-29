@@ -2,20 +2,20 @@
 
 session_start();
 
-require('../../includes/connect_db.php');
+require('../../includes/connect_DB.php');
 
 
 # Check form submitted.
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountID'])) {
 
   $errors = array();
 
-  $id = $_POST['user_id'];
+  $id = $_POST['accountID'];
 
-  # On success new password into 'users' database table.
-  if (!empty($_POST['user_id'])) {
+  # On success new password into 'artaccount' database table.
+  if (!empty($_POST['accountID'])) {
 
-    $q = "DELETE FROM users WHERE user_id='$id'";
+    $q = "DELETE FROM artaccount WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
 
   }
@@ -27,16 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
   header("Refresh:0; url=../users.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['campus_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['artGroupID'])) {
 
   $errors = array();
 
-  $id = $_POST['campus_id'];
+  $id = $_POST['artGroupID'];
 
-  # On success new password into 'users' database table.
-  if (!empty($_POST['campus_id'])) {
+  # On success new password into 'artaccount' database table.
+  if (!empty($_POST['artGroupID'])) {
 
-    $q = "DELETE FROM campus WHERE campus_id='$id'";
+    $q = "DELETE FROM artgroups WHERE artGroupID='$id'";
     $r = @mysqli_query($link, $q);
 
   }
@@ -45,19 +45,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['campus_id'])) {
     alert($msg);
   }
 
-  header("Refresh:0; url=../campus.php");
+  header("Refresh:0; url=../groups.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['vehicle_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['artID'])) {
 
   $errors = array();
 
-  $id = $_POST['vehicle_id'];
+  $id = $_POST['artID'];
 
-  # On success new password into 'users' database table.
-  if (!empty($_POST['vehicle_id'])) {
+  # On success new password into 'artaccount' database table.
+  if (!empty($_POST['artID'])) {
 
-    $q = "DELETE FROM vehicle WHERE vehicle_id='$id'";
+    $q = "DELETE FROM artwork WHERE artID='$id'";
     $r = @mysqli_query($link, $q);
 
   }
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['vehicle_id'])) {
     alert($msg);
   }
 
-  header("Refresh:0; url=../vehicle.php");
+  header("Refresh:0; url=../artwork.php");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
 
   $id = $_POST['post_id'];
 
-  # On success new password into 'users' database table.
+  # On success new password into 'artaccount' database table.
   if (!empty($_POST['post_id'])) {
 
     $q = "DELETE FROM news WHERE post_id='$id'";
@@ -88,26 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
   }
 
   header("Refresh:0; url=../news.php");
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['booking_id'])) {
-
-  $errors = array();
-
-  $id = $_POST['booking_id'];
-
-  if (!empty($_POST['booking_id'])) {
-
-    $q = "DELETE FROM booking WHERE booking_id='$id'";
-    $r = @mysqli_query($link, $q);
-
-  }
-
-  foreach ($errors as $msg) {
-    alert($msg);
-  }
-
-  header("Refresh:0; url=../booking.php");
 }
 
 function alert($msg)

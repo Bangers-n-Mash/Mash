@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['account_level'] == "2") {
+if ($_SESSION['account_type'] == "2") {
     include('includes/admin-header.php');
 } else {
     header("Location: ../login.php");
@@ -14,23 +14,24 @@ if ($_SESSION['account_level'] == "2") {
     <?php
 
     include('includes/sidenav.php');
+
     ?>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Campus</h1>
+                <h1 class="mt-4">Group Content</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
-                    <li class="breadcrumb-item">Fleet Management</li>
-                    <li class="breadcrumb-item active">Campus</li>
+                    <li class="breadcrumb-item">Group Management</li>
+                    <li class="breadcrumb-item active">Content</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        This page displays all campuses for the Edinburgh College Fleet.
+                        This page displays all group content links.
                     </div>
                 </div>
                 <?php
-                include('includes/campus-table.php');
+                include('includes/group-content-table.php');
                 ?>
             </div>
         </main>

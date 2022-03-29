@@ -3,7 +3,7 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Bar Chart Example
-var ctx = document.getElementById("myMileageChart");
+var ctx = document.getElementById("myViewsChart");
 var myViewChart = new Chart(ctx, {
   type: 'bar',
   data: {

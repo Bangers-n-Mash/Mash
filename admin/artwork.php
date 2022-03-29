@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['account_level'] == "2") {
+if ($_SESSION['account_type'] == "2") {
     include('includes/admin-header.php');
 } else {
     header("Location: ../login.php");
@@ -19,19 +19,19 @@ if ($_SESSION['account_level'] == "2") {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Current Bookings</h1>
+                <h1 class="mt-4">Mash Artwork</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Booking Management</li>
-                    <li class="breadcrumb-item active">Current Bookings</li>
+                    <li class="breadcrumb-item active">Content Management</li>
+                    <li class="breadcrumb-item active">Artwork</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        This page displays all current and past vehicle bookings.
+                        This page displays all artwork hossted by mash..
                     </div>
                 </div>
                 <?php
-                include('includes/booking-table.php');
+                include('includes/artwork-table.php');
                 ?>
             </div>
         </main>

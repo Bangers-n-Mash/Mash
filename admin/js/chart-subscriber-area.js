@@ -3,13 +3,13 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
-var ctx = document.getElementById("mySubscriberArea");
+var ctx = document.getElementById("myCollaboratorArea");
 var mySubscriberArea = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10", "May 11", "May 12", "May 13"],
+    labels: ["March 1", "March 2", "March 3", "March 4", "March 5", "March 6", "March 7", "March 8", "March 9", "March 10", "March 11", "March 12", "March 13"],
     datasets: [{
-      label: "Subscribers",
+      label: "Collaborators",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",

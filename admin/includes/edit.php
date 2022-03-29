@@ -2,27 +2,27 @@
 
 session_start();
 
-$db = require('../../includes/connect_db.php');
+$db = require('../../includes/connect_DB.php');
 
 
 # Check form submitted.
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountID'])) {
 
   $db;
 
   $errors = array();
 
-  $id = $_POST['user_id'];
+  $id = $_POST['accountID'];
 
   if (!empty($_POST['forename'])) {
     $fn = trim($_POST['forename']);
-    $q = "UPDATE users SET forename='$fn' WHERE user_id='$id'";
+    $q = "UPDATE artaccount SET forename='$fn' WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
   if (!empty($_POST['surname'])) {
     $sn = trim($_POST['surname']);
-    $q = "UPDATE users SET surname='$sn' WHERE user_id='$id'";
+    $q = "UPDATE artaccount SET surname='$sn' WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
@@ -30,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
 
     $e = trim($_POST['email']);
 
-    $q = "SELECT * FROM users WHERE email='$e'";
+    $q = "SELECT * FROM artaccount WHERE email='$e'";
     $r = @mysqli_query($link, $q);
 
     if (mysqli_num_rows($r) == 0) {
-      $q = "UPDATE users SET email='$e' WHERE user_id='$id'";
+      $q = "UPDATE artaccount SET email='$e' WHERE accountID='$id'";
       $r = @mysqli_query($link, $q);
     } else {
       $errors[] = "This email already exists.";
@@ -43,19 +43,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
 
   if (!empty($_POST['phone_no'])) {
     $pn = trim($_POST['phone_no']);
-    $q = "UPDATE users SET phone_no='$pn' WHERE user_id='$id'";
+    $q = "UPDATE artaccount SET phone_no='$pn' WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
-  if (!empty($_POST['account_level'])) {
-    $at = trim($_POST['account_level']);
-    $q = "UPDATE users SET account_level='$at' WHERE user_id='$id'";
+  if (!empty($_POST['account_type'])) {
+    $at = trim($_POST['account_type']);
+    $q = "UPDATE artaccount SET account_type='$at' WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
   if (!empty($_POST['account_status'])) {
     $as = trim($_POST['account_status']);
-    $q = "UPDATE users SET account_status='$as' WHERE user_id='$id'";
+    $q = "UPDATE artaccount SET account_status='$as' WHERE accountID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
@@ -69,78 +69,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_campus'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['artID'])) {
 
   $db;
 
   $errors = array();
 
-  if (!empty($_POST['new_campus'])) {
+  $id = $_POST['artID'];
 
-    $cn = trim($_POST['new_campus']);
-    $ca = trim($_POST['campus_address']);
 
-    $q = "SELECT * FROM campus WHERE campus_name='$cn'";
-    $r = @mysqli_query($link, $q);
-
-    if (mysqli_num_rows($r) == 0) {
-      $q = "INSERT INTO campus (campus_name, campus_address) VALUES ('$cn', '$ca')";
-      $r = @mysqli_query($link, $q);
-    } else {
-      $errors[] = "This campus already exists.";
-    }
-  }
-
-  mysqli_close($link);
-
-  foreach ($errors as $msg) {
-    alert($msg);
-  }
-
-  header("Refresh:0; url=../campus.php");
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['vehicle_id'])) {
-
-  $db;
-
-  $errors = array();
-
-  $id = $_POST['vehicle_id'];
-
-  if (!empty($_POST['vehicle_reg'])) {
-    $reg = $_POST['vehicle_reg'];
-    $q = "UPDATE vehicle SET vehicle_reg='$reg' WHERE vehicle_id='$id'";
+  if (!empty($_POST['title'])) {
+    $vm = trim($_POST['title']);
+    $q = "UPDATE artwork SET title='$vm' WHERE artID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
-  if (!empty($_POST['campus_id'])) {
-    $cam = trim($_POST['campus_id']);
-    $q = "UPDATE vehicle SET campus_id='$cam' WHERE vehicle_id='$id'";
+  if (!empty($_POST['artDescription'])) {
+    $vmod = trim($_POST['artDescription']);
+    $q = "UPDATE artwork SET artDescription='$vmod' WHERE artID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
-  if (!empty($_POST['vehicle_make'])) {
-    $vm = trim($_POST['vehicle_make']);
-    $q = "UPDATE vehicle SET vehicle_make='$vm' WHERE vehicle_id='$id'";
-    $r = @mysqli_query($link, $q);
-  }
-
-  if (!empty($_POST['vehicle_model'])) {
-    $vmod = trim($_POST['vehicle_model']);
-    $q = "UPDATE vehicle SET vehicle_model='$vmod' WHERE vehicle_id='$id'";
-    $r = @mysqli_query($link, $q);
-  }
-
-  if (!empty($_POST['vehicle_colour'])) {
-    $vc = trim($_POST['vehicle_colour']);
-    $q = "UPDATE vehicle SET vehicle_colour='$vc' WHERE vehicle_id='$id'";
-    $r = @mysqli_query($link, $q);
-  }
-
-  if (!empty($_POST['vehicle_status'])) {
-    $vs = trim($_POST['vehicle_status']);
-    $q = "UPDATE vehicle SET vehicle_status='$vs' WHERE vehicle_id='$id'";
+  if (!empty($_POST['artVisibility'])) {
+    $vs = trim($_POST['artVisibility']);
+    $q = "UPDATE artwork SET artVisibility='$vs' WHERE artID='$id'";
     $r = @mysqli_query($link, $q);
   }
 
@@ -150,38 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['vehicle_id'])) {
     alert($msg);
   }
 
-  header("Refresh:0; url=../vehicle.php");
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_vehicle'])) {
-
-  $db;
-
-  $errors = array();
-
-  $v = trim($_POST['new_vehicle']);
-  $ci = trim($_POST['campus_id']);
-  $vm = trim($_POST['vehicle_make']);
-  $vmod = trim($_POST['vehicle_model']);
-  $vc = trim($_POST['vehicle_colour']);
-  $vs = trim($_POST['vehicle_status']);
-
-  if (!empty($_POST['new_vehicle'])) {
-    $q = "INSERT INTO vehicle (vehicle_reg, campus_id, vehicle_make, vehicle_model, vehicle_colour, vehicle_status) VALUES ('$v', '$ci', '$vm', '$vmod', '$vc', '$vs')";
-    $r = @mysqli_query($link, $q);
-  } else {
-
-    $errors[] = "There was an unexpected error";
+  if ($_POST['artType'] == 'Picture') {
+    header("Refresh:0; url=../artwork.php");
+  } else if ($_POST['artType'] == 'Text') {
+    header("Refresh:0; url=../documents.php");
   }
 
-  mysqli_close($link);
-
-  foreach ($errors as $msg) {
-    alert($msg);
-  }
-
-  header("Refresh:0; url=../vehicle.php");
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
 

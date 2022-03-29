@@ -1,26 +1,26 @@
 <?php
 
-require('../includes/connect_db.php');
+require('../includes/connect_DB.php');
 
 ?>
 
 <div class="card mb-4">
     <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
+        <em class="fas fa-table mr-1"></em>
         Users
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th>User ID</th>
+                        <th>Username</th>
                         <th>Forename</th>
                         <th>Surname</th>
                         <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>License Expiry</th>
-                        <th>License Check Code</th>
+                        <th>Creation Date</th>
+                        <th>Date Of Birth</th>
                         <th>Status</th>
                         <th>Account Type</th>
                         <th>Actions</th>
@@ -29,54 +29,54 @@ require('../includes/connect_db.php');
                 <tfoot>
                     <tr>
                         <th>User ID</th>
+                        <th>Username</th>
                         <th>Forename</th>
                         <th>Surname</th>
                         <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>License Expiry</th>
-                        <th>License Check Code</th>
+                        <th>Creation Date</th>
+                        <th>Date Of Birth</th>
                         <th>Status</th>
                         <th>Account Type</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>
                 <tbody>
-
                     <?php
-                    $g = "SELECT * FROM users";
+                    $g = "SELECT * FROM artaccount";
                     $n = mysqli_query($link, $g);
                     if (mysqli_num_rows($n) > 0) {
                         while ($row = mysqli_fetch_array($n, MYSQLI_ASSOC)) {
                     ?>
                             <tr>
-                                <td><?php echo "{$row['user_id']}"; ?></td>
+                                <td><?php echo "{$row['accountID']}"; ?></td>
+                                <td><?php echo "{$row['username']}"; ?></td>
                                 <td><?php echo "{$row['forename']}"; ?></td>
                                 <td><?php echo "{$row['surname']}"; ?></td>
                                 <td><?php echo "{$row['email']}"; ?></td>
-                                <td><?php echo "{$row['phone_no']}"; ?></td>
-                                <td><?php echo "{$row['license_expiry']}"; ?></td>
-                                <td><?php echo "{$row['check_code']}"; ?></td>
+                                <td><?php echo "{$row['creation_date']}"; ?></td>
+                                <td><?php echo "{$row['dateOfBirth']}"; ?></td>
                                 <td><?php if ($row['account_status'] == "1") {
                                         echo "Blocked";
                                     } else {
                                         echo "Active";
                                     } ?></td>
-                                <td><?php if ($row['account_level'] == "2") {
+                                <td><?php if ($row['account_type'] == "2") {
                                         echo "Admin";
                                     } else {
                                         echo "User";
                                     } ?></td>
                                 <td>
-                                    <div class="row"><a href="#editModal<?php echo "{$row['user_id']}"; ?>" data-toggle="modal" style="text-decorations:none; color:inherit;"><button class="btn"><em class="fa fa-edit"></em> Edit</a></button>
+                                    <div class="row">
+                                        <a href="#editModal<?php echo "{$row['accountID']}"; ?>" data-toggle="modal" style="text-decorations:none; color:inherit;"><button class="btn"><em class="fa fa-edit"></em>Edit</a></button>
 
                                         <form action="includes/delete.php" method="post">
-                                            <input type="hidden" id="userId" name="user_id" value="<?php echo "{$row['user_id']}"; ?>">
+                                            <input type="hidden" id="userId" name="accountID" value="<?php echo "{$row['accountID']}"; ?>">
                                             <button type="submit" name="btnDeleteUsr" class="btn" value=""><em class="fa fa-trash"></em> Delete</button>
                                         </form>
                                     </div>
                                 </td>
 
-                                <div class="modal fade" id="editModal<?php echo "{$row['user_id']}"; ?>" tabindex="-1" role="dialog" aria-labelledby="details" aria-hidden="true">
+                                <div class="modal fade" id="editModal<?php echo "{$row['accountID']}"; ?>" tabindex="-1" role="dialog" aria-labelledby="details" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -87,7 +87,7 @@ require('../includes/connect_db.php');
                                             </div>
                                             <div class="modal-body">
                                                 <form action="includes/edit.php" method="post">
-                                                    <input type="hidden" id="userId" name="user_id" value="<?php echo "{$row['user_id']}"; ?>">
+                                                    <input type="hidden" id="userId" name="accountID" value="<?php echo "{$row['accountID']}"; ?>">
                                                     <div class="form-group">
                                                         <input type="text" name="forename" class="form-control" placeholder="<?php echo "{$row['forename']}"; ?>" value="<?php if (isset($_POST['forename'])) {
                                                                                                                                                                                 echo $_POST['forename'];
@@ -107,8 +107,8 @@ require('../includes/connect_db.php');
 
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" name="phone_no" class="form-control" placeholder="<?php echo "{$row['phone_no']}"; ?>" value="<?php if (isset($_POST['phone_no'])) {
-                                                                                                                                                                                echo $_POST['phone_no'];
+                                                        <input type="text" name="username" class="form-control" placeholder="<?php echo "{$row['username']}"; ?>" value="<?php if (isset($_POST['username'])) {
+                                                                                                                                                                                echo $_POST['username'];
                                                                                                                                                                             } ?>">
 
                                                     </div>
@@ -120,7 +120,7 @@ require('../includes/connect_db.php');
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select name="account_level" class="form-control">
+                                                        <select name="account_type" class="form-control">
                                                             <option value="" selected disabled hidden>Account Type</option>
                                                             <option value="1">User</option>
                                                             <option value="2">Admin</option>

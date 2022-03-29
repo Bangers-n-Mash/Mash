@@ -26,7 +26,7 @@
 <script src="js/chart-subscriber-area.js"></script>
 <script src="js/chart-peak-pie.js"></script>
 <script src="js/chart-current-pie.js"></script>
-<script src="js/chart-mileage-bar.js"></script>
+<script src="js/chart-views-bar.js"></script>
 <script src="js/chart-daily-area.js"></script>
 
 </body>
