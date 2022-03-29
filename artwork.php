@@ -7,7 +7,7 @@ include('includes/header.php');
 
 <script src="dist/bundle.js"></script>
 
-<div class="wrapper">
+<div class="wrapper" style="position:static !important;">
 
 	<nav aria-label="Main Menu" class="main_menu" id="main_menu"></nav>
 
@@ -67,6 +67,7 @@ include('includes/header.php');
 		</div>
 	</div>
 </div>
+
 <div class="mobile_menu">
 	<button class="left_mobile_menu" id="left_mobile_menu_button" type="button">
 		<span class="sr_only">Toggle Menu</span>
