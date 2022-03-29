@@ -26,7 +26,7 @@ include('includes/connect_DB.php')
                 <form action="group_cjscript.php" method="POST" class="form-signin">
                     <div class="col-xs-3">
                         <label for="groupName" class="sr-only">Group Name</label>
-                        <input type="groupname" id="groupName" class="form-control" placeholder="Group Name" required autofocus>
+                        <input type="groupName" id="groupName" class="form-control" placeholder="Group Name" required autofocus>
                     </div>
                     <label for="groupPicture" class="sr-only">Group Profile Picture</label>
                     <input type="file" name="fileToUpload" id="fileToUpload">
