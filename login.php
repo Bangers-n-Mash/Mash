@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <link rel="stylesheet" href="admin/css/styles.css">
     <link rel="stylesheet" href="css/login-register.css">
-
 </head>
+
 
 <body class="text-center">
     <form class="form-signin" action="includes/signin.php" method="POST">
@@ -29,7 +29,7 @@
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> Remember me </input>
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>

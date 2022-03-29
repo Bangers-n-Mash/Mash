@@ -1,5 +1,6 @@
 <?php
 
+include('includes/auth_session.php');
 include('includes/header.php');
 
 ?>

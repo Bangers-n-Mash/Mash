@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include('includes/auth_session.php');
 
 include('includes/connect_DB.php');
 
@@ -23,6 +23,9 @@ include('includes/header.php');
             <br>
             <label for="description">Description:</label>
             <textarea name="description" id="description" rows="4" columns="50">File description...</textarea>
+            <br>
+            <label for="description">Private</label>
+            <input type="checkbox" id="private" placeholder="FALSE"> </input>
             <br>
             <input type="submit" value="Submit and Upload" name="submit">
 
