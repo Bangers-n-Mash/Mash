@@ -1,7 +1,9 @@
 <?php
-    
-    include('includes/auth_session.php');
+
+session_start();
+
     include('includes/header.php');
+    
 ?>
 
 

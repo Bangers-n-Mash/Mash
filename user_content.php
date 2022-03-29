@@ -1,15 +1,9 @@
 <?php
 
-include('includes/auth_session.php');
+session_start();
+
 include('includes/header.php');
 include('includes/connect_DB.php')
-
-
-
-
-
-
-
 
 ?>
 <!doctype html>
