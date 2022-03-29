@@ -45,7 +45,7 @@
     ?>
 
 
-    <form class="form-signin">
+    <form class="form-signin" action = "" method="post">
         <a href="index.php"><img class="logo" style="height: 100px; width: 200px;" src="img/Logo.png" alt="Mash"></a>
         <h1 class="h3 mb-3 font-weight-normal">Become a masher, <a href="register.php" style="color:grey; text-decoration:none;">Sign up</a> </h1>
         
