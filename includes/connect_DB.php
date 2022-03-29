@@ -2,7 +2,7 @@
 
 $serverName = "localhost";
 $database = "mash";
-$dbUser = "dev";
+$dbUser = "mash";
 $dbPassword = "2VFNtrZS2QWH";
 
 $link = mysqli_connect($serverName, $dbUser, $dbPassword, $database);
