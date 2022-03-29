@@ -1,9 +1,7 @@
 <?php
 
-// include('includes/auth_session.php');
 include('includes/connect_DB.php');
 include('includes/header.php');
-// include('registeration.php');
 
 ?>
 
