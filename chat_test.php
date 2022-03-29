@@ -2,10 +2,11 @@
 
 session_start();
 
-include('includes/header.php');
-
 if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
     include('includes/chat.php');
+} else {
+    header("Location: /login.php");
 }
 
 ?>

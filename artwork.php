@@ -2,7 +2,12 @@
 
 session_start();
 
-include('includes/header.php');
+if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
+} else {
+    header("Location: /login.php");
+}
+
 ?>
 
 <script src="dist/bundle.js"></script>
