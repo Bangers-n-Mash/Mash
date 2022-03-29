@@ -5,7 +5,6 @@ include('includes/header.php');
 
 ?>
 
-<div class="container-fluid" style="min-height:100%;">
     <div class="row">
         <div class="image-block col-sm-4" style="background: url(img/city1.jpg) no-repeat center top;background-size:cover;">
             <p> Image Info </p>
@@ -29,7 +28,6 @@ include('includes/header.php');
             <p> Image Info </p>            
         </div>
     </div>
-</div>
 
 <?php
 
