@@ -36,6 +36,7 @@
             <a class="dropdown-item" href="artwork.php">Artwork</a>
             <a class="dropdown-item" href="document_editor.php">Documents</a>
             <a class="dropdown-item" href="file_upload.php">Upload</a>
+            <a class="dropdown-item" href="chat_test.php">Chat</a>
             <a class="dropdown-item" href="faq.php">FAQ</a>
             <a class="dropdown-item" href="contact_support.php">Support</a>
           </div>

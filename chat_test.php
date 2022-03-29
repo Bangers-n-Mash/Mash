@@ -3,10 +3,13 @@
 session_start();
 
 include('includes/header.php');
-include('includes/exposeSession.php');
-include('includes/chat.php');
+
+if (isset($_SESSION['accountID'])) {
+    include('includes/chat.php');
+}
 
 ?>
+<div class="fluid">
     <div class="row">
         <div class="image-block col-sm-4" style="background: url(img/city1.jpg) no-repeat center top;background-size:cover;">
             <p> Image Info </p>
@@ -30,6 +33,7 @@ include('includes/chat.php');
             <p> Image Info </p>
         </div>
     </div>
+</div>
 <?php
 
 include('includes/footer.php');

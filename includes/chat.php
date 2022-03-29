@@ -1,4 +1,7 @@
 <?php
+
+require_once 'includes/exposeSession.php';
+
 require_once 'connect_DB.php';
 $query = "SELECT account.accountID, username, profilePicture FROM artaccount as account INNER JOIN friendlist as friendTable ON account.accountID = friendTable.friend_id WHERE friendTable.accountID = ?;";
 $prepStmt = mysqli_stmt_init($link);
@@ -17,7 +20,7 @@ $results = mysqli_stmt_get_result($prepStmt);
 
 <link rel="stylesheet" href="../css/chat.css">
 
-<div id="overlay" class="chat">
+<div id="overlay" class="chat" style="pointer-events: none;">
     <button type="button" class="btn btn-primary" id="toastTestBtn">Test live msg</button>
 
     <div class="chat-wrapper d-flex align-items-end justify-content-end h-100">
