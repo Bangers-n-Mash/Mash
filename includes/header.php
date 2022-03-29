@@ -27,12 +27,12 @@
 
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Page Links
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-menu dropdown-menu-start">
             <a class="dropdown-item" href="artwork.php">Artwork</a>
             <a class="dropdown-item" href="document_editor.php">Documents</a>
             <a class="dropdown-item" href="file_upload.php">Upload</a>
@@ -43,17 +43,17 @@
     </div>
     <div class="mx-auto order-0">
       <a class="navbar-brand" href="index.php"><img class="logo" style="max-height: 60px; max-width: 150px;" src="img/WhiteLogo.png" alt="Mash"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" id="userDropdown" href="#" data-toggle="dropdown" aria-expanded="false" aria-controls="userDropdown">
+          <a class="nav-link" id="userDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="userDropdown">
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>
           </a>
-          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="login.php">Login</a>
             <a class="dropdown-item" href="register.php">Register</a>
           </div>
