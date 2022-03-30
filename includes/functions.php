@@ -136,8 +136,12 @@ function loginUser($dbConn, $username, $password)
             $_SESSION['firstname'] = $exists['forename'];
             $_SESSION['lastname'] = $exists['surname'];
             $_SESSION['account_type'] = $exists['account_type'];
+            $_SESSION['creation_date'] = $exists['creation_date'];
+            $_SESSION['dateOfBirth'] = $exists['dateOfBirth'];
             header("location: ../index.php");
             exit();
+        } else {
+            header("location: ../login.php?error=incorrectpassword");  
         }
     } else {
         header("location: ../login.php?error=usernotfound");

@@ -56,14 +56,16 @@ if ($uploadOk == 0) {
 
 include('includes/connect_DB.php');
 
-$sql = $link->prepare("INSERT INTO artwork (content_type, title, description, file, likes, privacy) VALUES (?, ?, ?, ?, ?,?);");
-$sql->bind_param("ssssi", $content_type, $content_title, $content_description, $content_file, $content_likes, $privacyType);
+$content_category_id; //add category selection in form
+
+$sql = $link->prepare("INSERT INTO artwork (artType, artVisibility, title, artDescription, artFile, likes) VALUES (?, ?, ?, ?, ?,?);");
+$sql->bind_param($content_type, $privacyType, $content_title, $content_description, $content_file, $content_likes);
 
 //$content_id set to assign by auto-increment in DB
-$content_type = "picture"; //change to get from file type
+$content_type = "Picture"; //change to get from file type
 $content_title = $_POST["title"];
 $content_description = $_POST["description"]; 
-$privacyType = $_POST["artVisibility"]
+$privacyType = $_POST["artVisibility"];
 $content_file = $target_file;
 $content_likes = 0;
 $content_account_id; //take id of uploader's account
