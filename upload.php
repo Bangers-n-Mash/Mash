@@ -57,7 +57,7 @@ if ($uploadOk == 0) {
 
 include('includes/connect_DB.php');
 
-$sql = $link->prepare("INSERT INTO content (content_type, title, description, file, likes, privacy) VALUES (?, ?, ?, ?, ?,?);");
+$sql = $link->prepare("INSERT INTO artwork (content_type, title, description, file, likes, privacy) VALUES (?, ?, ?, ?, ?,?);");
 $sql->bind_param("ssssi", $content_type, $content_title, $content_description, $content_file, $content_likes, $privacyType);
 
 //$content_id set to assign by auto-increment in DB

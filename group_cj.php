@@ -5,13 +5,6 @@ session_start();
 include('includes/header.php');
 include('includes/connect_DB.php')
 
-
-
-
-
-
-
-
 ?>
 <body class="text-center">
 <section class="bg-light py-1 border-bottom">
@@ -32,7 +25,7 @@ include('includes/connect_DB.php')
                         <label for="groupPicture" class="sr-only">Group Profile Picture</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                    <button class="btn btn-lg btn-primary btn-block" name ="submit" type="submit">Register</button>
                 </form>
             </div>
         </div>

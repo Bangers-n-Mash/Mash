@@ -53,7 +53,7 @@ include('includes/connect_DB.php')
             <div class="text-center mb-5">
                 
             <!-- script needed here -->
-            <php? 
+            <?php 
             $q = "SELECT accountID FROM artAccount WHERE username='$u'";
             echo "<h2 class="fw-bolder">" . $_currentGroup ."Profile</h2>";
             ?>

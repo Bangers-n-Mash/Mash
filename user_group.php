@@ -49,17 +49,13 @@ include('includes/connect_DB.php')
             <div class="overflow-auto">
             
             <!---this text here should effectively be put in the php script if there are no groups found for the user.  -->
-            <p class ="text-center">Looks like you aren't part of any groups yet. Click the "Create/Join Group" button on the top right of your screen to create or join one now. </p>
+            <?php
+                echo "<p class ='text-center'>Looks like you aren't part of any groups yet. Click the 'Create/Join Group' button on the top right of your screen to create or join one now. </p>";
+            ?>    
+            <!-- <p class ="text-center">Looks like you aren't part of any groups yet. Click the "Create/Join Group" button on the top right of your screen to create or join one now. </p> -->
 
             <!-- php script needed that gets all groups user is a part of, and outputs them here as links (links to the same dynamic webpage but will need the groups name and id passed into the webpage).
             if needed it can also pull in images -->
-
-
-
-
-
-
-
             </div>
 
 
