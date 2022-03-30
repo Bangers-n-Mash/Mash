@@ -2,14 +2,16 @@
 
 session_start();
 
-include('includes/header.php');
-include('includes/connect_DB.php')
+include('includes/connect_DB.php');
+
+if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
+} else {
+    header("Location: /login.php");
+}
 
 ?>
-<!doctype html>
-<html lang="en">
 
-<head>
 
 <style>img 
 {
@@ -44,16 +46,13 @@ include('includes/connect_DB.php')
 
 </style>
 
-</head>
-
-<body>
 <section class="bg-light py-1">
     
         <div class="container px-3 my-3">
             <div class="text-center mb-5">
                 
             <!-- script needed here -->
-            <php? 
+            <?php 
             $q = "SELECT accountID FROM artAccount WHERE username='$u'";
             echo "<h2 class="fw-bolder">" . $_currentGroup ."Profile</h2>";
             ?>
@@ -115,32 +114,6 @@ include('includes/connect_DB.php')
 
  </section>
 
-
-
-
-
-
-
-
- </body>
-
-
-
-
-
-
-
-
-
-         
-    
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-</script>
-
-
-<html>
 <?php
 
 include('includes/footer.php');

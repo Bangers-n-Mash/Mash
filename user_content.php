@@ -2,8 +2,13 @@
 
 session_start();
 
-include('includes/header.php');
-include('includes/connect_DB.php')
+include('includes/connect_DB.php');
+
+if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
+} else {
+    header("Location: /login.php");
+}
 
 ?>
 <!doctype html>

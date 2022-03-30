@@ -9,6 +9,12 @@ if (isset($_SESSION['accountID'])) {
 }
 
 
+if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
+} else {
+    include('includes/header.php');
+}
+
 ?>
 
 
