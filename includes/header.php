@@ -49,7 +49,7 @@
       </button>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item">
           <a class="nav-link" id="userDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="userDropdown">
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>

@@ -10,53 +10,48 @@ let quillOptions = {
 var quill = new Quill('#editor', quillOptions);
 
 quill.on('editor-change', function (eventName, ...args) {
-    socket.emit('doc:event', { "eventName": eventName, "args": args });
-});
 
-const socket = io("http://localhost:8080", {
-    withCredentials: true,
-    extraHeaders: {
-        "ws-header": "mash"
+    if (eventName === 'text-change') {
+        let source = args[2];
+        if (source === 'user') {
+            socket.emit('doc:event', { "eventName": eventName, "delta": args[0], "oldDelta": args[1], "source": sessionStorage.username });
+        }
+    }
+    if (eventName === 'selection-change') {
+        // TODO send cursor update set a flag and setTimeout before next update
     }
 });
-
+if (!socket) {
+    const socket = io("http://64.227.42.104:8080", {
+        withCredentials: true,
+        extraHeaders: {
+            "ws-header": "mash"
+        },
+        auth: {
+            username: sessionStorage.username,
+            accountID: sessionStorage.accountID
+        }
+    });
+}
 // connection with server
 socket.on('connect', function () {
     console.log('Connected to Server')
 });
 
-// message listener from server
-socket.on('doc:update', (payload) => {
-    console.log(payload.args);
-    let delta = payload.args[0];
-    let oldDelta = payload.args[1];
-    let source = payload.args[2];
-
-    if (payload.eventName === 'text-change') {
-        if (source == 'api') {
-            console.log("An API call change.");
-        } else if (source == 'user') {
-            let changeIndex = delta.ops[0].retain;
-            let changes = delta.ops.slice(1);
-            changes.forEach(element => {
-                let changeType = Object.keys(element)[0];
-                let change = Object.values(element)[0];
-                let attributes = element.attributes;
-                console.log("A user " + changeType + " '" + change + "' at index: " + changeIndex + " with attributes " + JSON.stringify(attributes));
-            });
-        }
-    } else if (payload.eventName === 'selection-change') {
-        let range = delta;
-        if (range && source == 'user') {
-            if (range.length == 0) {
-                console.log('User cursor is on', range.index);
-            } else {
-                console.log('User has highlighted range: [' + range.index + ':' + (range.index + range.length) + ']');
-            }
-        } else {
-            console.log('Cursor not in the editor');
-        }
+socket.on("connect_error", (err) => {
+    if (err.message === "invalid username") {
+        console.log("Authentication error");
     }
+});
+
+// message listener from server
+socket.on('doc:update', ({ eventName, delta, oldDelta, source }) => {
+    if (eventName === 'text-change') {
+        quill.updateContents(delta);
+    }
+    /* if (eventName === 'selection-change') {
+        TODO draw other collaborators cursors
+    } */
 });
 
 // when disconnected from server

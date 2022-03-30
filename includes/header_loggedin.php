@@ -1,3 +1,5 @@
+<?php require_once 'connect_DB.php'; ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -33,6 +35,7 @@
             Page Links
           </button>
           <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" href="user_content.php">User Content</a>
             <a class="dropdown-item" href="artwork.php">Artwork</a>
             <a class="dropdown-item" href="document_editor.php">Documents</a>
             <a class="dropdown-item" href="file_upload.php">Upload</a>
@@ -49,7 +52,14 @@
       </button>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <?php if ($_SESSION['accountID']) echo "<button type=\"button\" class=\"btn \" data-bs-toggle=\"modal\" data-bs-target=\"#createArt\">"
+            . "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" fill=\"white\" class=\"bi bi-plus-lg\" viewBox=\"0 0 16 16\">"
+            . "<path fill-rule=\"evenodd\" d=\"M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z\" /></svg>
+            </button>"
+          ?>
+        </li>
         <li class="nav-item">
           <a class="nav-link" id="userDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="userDropdown">
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>
@@ -70,3 +80,61 @@
       </ul>
     </div>
   </nav>
+
+  <!-- Modal -->
+  <div class="modal fade" id="createArt" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createArtLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createArtLabel">Create New Art</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form" action="includes/createNew.php" method="POST">
+            <div class="mb-3">
+              <label for="artTitle" class="form-label">Title</label>
+              <input type="text" class="form-control" id="artTitle" name="title">
+            </div>
+            <div class="mb-3">
+              <label for="artDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="artDescription" rows="3" name="description"> </textarea>
+            </div>
+            <select class="form-select mb-3" aria-label="Art type" name="type">
+              <option selected value="Text">Document</option>
+              <option value="Picture">Image</option>
+              <option value="animation">Animation</option>
+            </select>
+            <select class="form-select mb-3" aria-label="group" name="group">
+              <option selected value="new">New group</option>
+              <?php if ($_SESSION['accountID']) {
+                $query = "SELECT groupdetails.artGroupID, groupName FROM artgroups as groupdetails INNER JOIN noofmemgroup as groupmembers ON groupdetails.artGroupID = groupmembers.artGroupID WHERE groupmembers.accountID = ?;";
+                $preparedStmt = mysqli_stmt_init($link);
+
+                if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+                  header("location: ../index.php?error=inputerror");
+                  mysqli_stmt_close($preparedStmt);
+                  exit();
+                }
+                mysqli_stmt_bind_param($preparedStmt, "i", $_SESSION['accountID']);
+                mysqli_stmt_execute($preparedStmt);
+                $results = mysqli_stmt_get_result($preparedStmt);
+                while ($row = mysqli_fetch_array($results)) {
+                  echo "<option selected value=\"" . $row['artGroupID'] . "\"> " . $row['groupName'] . "</option>";
+                }
+              }
+              ?>
+            </select>
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="private" name="private">
+              <label for="private" class="form-check-label">Private</label>
+            </div>
+        </div>
+        <div class="modal-footer mb-0 pb-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="submit">Create</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
