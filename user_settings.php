@@ -51,10 +51,6 @@ if (isset($_SESSION['accountID'])) {
 								<td>Account Creattion Date</td>
 								<td><?php echo "{$_SESSION['creation_date']}"; ?></td>
 							</tr>
-							<tr>
-								<td>Date Of Birth</td>
-								<td><?php echo "{$_SESSION['dateOfBirth']}"; ?></td>
-							</tr>
 						</tbody>
 					</table>
 					<div class="row">

@@ -148,7 +148,7 @@ chatSendBtn.addEventListener('click', (e) => {
 
 // ########## SOCKET.IO ##########
 
-const socket = io("localhost:8080", {
+const socket = io("http://64.227.42.104:8080", {
     withCredentials: true,
     extraHeaders: {
         "ws-header": "mash"

@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080; // setting the port
 const io = new Server(port, {
   serveClient: false,
   cors: {
-    origin: ["http://localhost:3000", "https://localhost:3000", "http://64.227.42.104:80", "https://64.227.42.104:80"],
+    origin: ["http://64.227.42.104", "https://64.227.42.104"],
     allowedHeaders: ["ws-header"],
     credentials: true
   }
