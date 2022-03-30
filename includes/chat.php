@@ -1,8 +1,8 @@
 <?php
 
 require_once 'includes/exposeSession.php';
-
 require_once 'connect_DB.php';
+
 $query = "SELECT account.accountID, username, profilePicture FROM artaccount as account INNER JOIN friendlist as friendTable ON account.accountID = friendTable.friend_id WHERE friendTable.accountID = ?;";
 $prepStmt = mysqli_stmt_init($link);
 if (!mysqli_stmt_prepare($prepStmt, $query)) {
@@ -20,8 +20,7 @@ $results = mysqli_stmt_get_result($prepStmt);
 
 <link rel="stylesheet" href="../css/chat.css">
 
-<div id="overlay" class="chat" style="pointer-events: none;">
-    <button type="button" class="btn btn-primary" id="toastTestBtn">Test live msg</button>
+<div id="overlay" class="chat">
 
     <div class="chat-wrapper d-flex align-items-end justify-content-end h-100">
 
@@ -67,7 +66,7 @@ $results = mysqli_stmt_get_result($prepStmt);
             </div>
         </div>
 
-        <div class="chat-panel col-3 position-absolute end-0 bottom-0 d-flex flex-column offcanvas offcanvas-end mt-auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex=" -1" id="chatbar" aria-label="Chats panel">
+        <div class="chat-panel col-3 d-flex flex-column offcanvas offcanvas-end px-0 mt-auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex=" -1" id="chatbar" aria-label="Chats panel">
             <div id="nav-tabContent" class="tab-content ">
                 <div id="chat-mash" class="chat-panel-contactlist tab-pane fade mt-auto" role="tabpanel" aria-labelledby="chat-mash-tab">
                     <ul class="list-group">
@@ -147,8 +146,8 @@ $results = mysqli_stmt_get_result($prepStmt);
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                         </svg>
                     </a>
-                    <div class="dropup">
-                        <a id="status-select" class="status-select d-flex align-items-center dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropup" style="position: relative;">
+                        <a id="status-select" class="status-select d-flex align-items-center dropdown-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                             <h4 id="status" class="m-2">Offline</h4>
                             <div class="chat-panel-status-icon m-2">
                                 <svg id="status-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-circle-fill" viewBox="0 0 16 16">
@@ -162,14 +161,14 @@ $results = mysqli_stmt_get_result($prepStmt);
                             <li><a href="" class="dropdown-item active" style="color: rgb(151, 167, 201);">Offline</a></li>
                         </ul>
                     </div>
-                    <button type="button" class="btn-close text-reset ms-auto p-3 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close text-reset ms-auto p-3 " data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="position-absolute end-0 bottom-0">
-        <button class="chat-bubble me-3" style="background-color: transparent; border:none;" data-bs-toggle="offcanvas" data-bs-target="#chatbar" aria-controls="chatbar">
+    <div class="position-fixed end-0 bottom-0">
+        <button class="chat-bubble me-3 mb-2" style="background-color: transparent; border:none;" data-bs-toggle="offcanvas" data-bs-target="#chatbar" aria-controls="chatbar">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-chat-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
             </svg>
