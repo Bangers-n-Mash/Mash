@@ -26,13 +26,9 @@ socket.on("connect_error", (err) => {
 });
 
 // message listener from server
-socket.on('art:update', ({ eventName, delta, oldDelta, source }) => {
-    if (eventName === 'text-change') {
-        // draw changes
-    }
-    /* if (eventName === 'selection-change') {
-        TODO draw other collaborators cursors
-    } */
+socket.on('art:update', ({ action, options }) => {
+    console.log(action);
+    window.State.do_action(action, options);
 });
 
 // when disconnected from server
