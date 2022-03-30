@@ -61,7 +61,7 @@ function createUser($dbConn, $firstname, $lastname, $username, $email, $password
     $errorPath = "";
     $error = emptyInput($firstname);
     if (!empty($error)) {
-        $errorPath .= empty($errorPath) ? $error : "&" . $error;
+        $errorPath .= $error;
     }
     $error = emptyInput($lastname);
     if (!empty($error)) {
@@ -141,6 +141,112 @@ function loginUser($dbConn, $username, $password)
         }
     } else {
         header("location: ../login.php?error=usernotfound");
+        exit();
+    }
+}
+
+
+function createArt($dbConn, $title, $description, $type, $private, $group)
+{
+    $uid = $_SESSION['accountID'];
+    $errorPath = "";
+    $error = emptyInput($title);
+    if (!empty($error)) {
+        $errorPath .= $error;
+    }
+    $error = emptyInput($description);
+    if (!empty($error)) {
+        $errorPath .= empty($errorPath) ? $error : "&" . $error;
+    }
+    $error = emptyInput($type);
+    if (!empty($error)) {
+        $errorPath .= empty($errorPath) ? $error : "&" . $error;
+    }
+    if (!empty($errorPath)) {
+        $page = $_SERVER['REQUEST_URI'];
+        $header = "location: .." . $page . "?error=" . $errorPath;
+        header($header);
+        exit();
+    } else {
+
+        $query = "INSERT INTO artwork (artType, artVisibility, title, artDescription, artFile, likes) VALUES (?, ?, ?, ?, ?, ?);";
+        $preparedStmt = mysqli_stmt_init($dbConn);
+
+        if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+            header("location: ../index.php?error=inputerror");
+            mysqli_stmt_close($preparedStmt);
+            exit();
+        }
+        $artId = uniqid("", false);
+        $path = "../uploads/" . $artId;
+        file_put_contents($path, "");
+        $likes = 0;
+        $isPrivate = !empty($private);
+        mysqli_stmt_bind_param($preparedStmt, "sissss", $type, $isPrivate, $title, $description, $path, $likes);
+        mysqli_stmt_execute($preparedStmt);
+
+        $query = "SELECT artID FROM artwork WHERE artFile = '$path'";
+        $result = mysqli_query($dbConn, $query, MYSQLI_STORE_RESULT);
+        $artID = mysqli_fetch_assoc($result)['artID'];
+        // $result->close();
+        // $dbConn->next_result();
+
+
+        if ($group == "new") {
+            $query = "INSERT INTO artgroups (groupName, messages_Records, groupProfilePicture) VALUES (?, ?, ?);";
+
+            if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+                header("location: ../index.php?error=inputerrorartgroups");
+                mysqli_stmt_close($preparedStmt);
+                exit();
+            }
+            $defaultGroupPic = "../img/people-fill.svg";
+            $records = 0;
+            $name = "No name group";
+            $mod = 1;
+
+            mysqli_stmt_bind_param($preparedStmt, "sis", $name, $records, $defaultGroupPic);
+            mysqli_stmt_execute($preparedStmt);
+
+            $query = "SELECT MAX(artGroupID) as groupid FROM artgroups;";
+            $result = mysqli_query($dbConn, $query);
+            $artGroupID = mysqli_fetch_assoc($result)['groupid'];
+
+            $query = "INSERT INTO grouparts (artGroupID, artID) VALUES (?, ?);";
+            if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+                header("location: ../index.php?error=inputerrorgrouparts");
+                mysqli_stmt_close($preparedStmt);
+                exit();
+            }
+            mysqli_stmt_bind_param($preparedStmt, "ii", $artGroupID, $artID);
+            mysqli_stmt_execute($preparedStmt);
+
+            $query = "INSERT INTO noofmemgroup (artGroupID, accountID, moderat) VALUES (?, ?, ?);";
+            if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+                header("location: ../index.php?error=inputerrornoofmemgroup");
+                mysqli_stmt_close($preparedStmt);
+                exit();
+            }
+            mysqli_stmt_bind_param($preparedStmt, "iii", $artGroupID, $uid, $mod);
+            mysqli_stmt_execute($preparedStmt);
+        } else {
+            $query = "INSERT INTO grouparts (artGroupID, artID) VALUES (?, ?);";
+            if (!mysqli_stmt_prepare($preparedStmt, $query)) {
+                header("location: ../index.php?error=inputerror");
+                mysqli_stmt_close($preparedStmt);
+                exit();
+            }
+            mysqli_stmt_bind_param($preparedStmt, "ii", $group, $artID);
+            mysqli_stmt_execute($preparedStmt);
+        }
+
+        if ($type === "Text") {
+            $header = "location: ../document_editor.php?file=" . $artId;
+            header($header);
+        } else if ($type === "Picture") {
+            $header = "location: ../artwork.php?file=" . $artId;
+            header($header);
+        }
         exit();
     }
 }

@@ -1,25 +1,19 @@
 .chat#overlay {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: auto;
+    width: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     z-index: 500;
-    pointer-events: none;
-}
-
-.chat#overlay > * {
-    pointer-events: auto;
 }
 
 /* PANEL */
 .chat-panel {
     max-height: 100vh;
     height: fit-content;
+    width: 370px;
     margin-top: auto;
-    overflow-y: auto;
-
+    position: fixed;
 }
 .chat-panel-selector>button{
     border-radius: 0;
@@ -33,9 +27,9 @@
     border-left-width: 0 !important;
 }
 .chat-panel-menu {
-    position: sticky;
     bottom: 0;
     background-color: white;
+    overflow-y: visible;
 }
 .contact-lastmsg{
     overflow: hidden;
@@ -56,16 +50,16 @@
     transition: all 0.5s ease;
 }
 .chat-card {
-    position: absolute;
+    position: fixed;
     bottom: 0 !important;
     height: 40vh;
     width: 500px;
     /* border: none !important; */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    margin: 0 80px 0 0;
+    margin: 0 90px 0 0;
     background-color: white;
-
+    overflow: hidden;
 }
 .chat-card-header {
     background-color:#212529;
