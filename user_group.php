@@ -1,17 +1,17 @@
 <?php
 
 session_start();
+if (isset($_SESSION['accountID'])) {
+    include('includes/header_loggedin.php');
+} else {
+    header("Location: /login.php");
+}
 
-include('includes/header.php');
-include('includes/connect_DB.php')
+$_SESSION['GroupName'] = null;
+$_SESSION['GroupID'] = null;
 
-
-
-
+include('includes/connect_DB.php');
 ?>
-<!doctype html>
-<html lang="en">
-
 <head>
 
 </head>
@@ -45,18 +45,33 @@ include('includes/connect_DB.php')
     <div class="row gx-3 justify-content-center">
     <div class ="card">
         <div class="card-body">
-            <h5 class ="text-center"> No groups found </h5>
-            <div class="overflow-auto">
+
             
             <!---this text here should effectively be put in the php script if there are no groups found for the user.  -->
             <?php
-                echo "<p class ='text-center'>Looks like you aren't part of any groups yet. Click the 'Create/Join Group' button on the top right of your screen to create or join one now. </p>";
+            $ad = $_SESSION['accountID'];
+            $q = "SELECT artgroups.groupName FROM artgroups INNER JOIN noofmemgroup ON noofmemgroup.artGroupID = artgroups.artGroupID WHERE noofmemgroup.accountID = '$ad'";
+            $r = @mysqli_query($link, $q);
+            if (mysqli_num_rows($r)== 0)
+            {
+                echo "<h5 class ="text-center"> No groups found </h5>
+                <div class="overflow-auto">
+                <p class ='text-center'>Looks like you aren't part of any groups yet. Click the 'Create/Join Group' button on the top right of your screen to create or join one now. </p>
+                </div>";
+            }
+            else
+            {
+                $ListGroups = mysqli_fetch_all($r,MYSQLI_ASSOC);
+                foreach($ListGroups as $currentGroup){
+                    echo"<a href='grouppage.php' role='button'  style=' background-color: #212529' class ='text-center'>".$currentGroup[0]."</a>";
+                }
+            }
             ?>    
             <!-- <p class ="text-center">Looks like you aren't part of any groups yet. Click the "Create/Join Group" button on the top right of your screen to create or join one now. </p> -->
 
             <!-- php script needed that gets all groups user is a part of, and outputs them here as links (links to the same dynamic webpage but will need the groups name and id passed into the webpage).
             if needed it can also pull in images -->
-            </div>
+
 
 
 
