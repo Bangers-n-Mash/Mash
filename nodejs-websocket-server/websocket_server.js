@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080; // setting the port
 const io = new Server(port, {
   serveClient: false,
   cors: {
-    origin: ["http://localhost:3000", "https://localhost:3000"],
+    origin: ["http://localhost:3000", "https://localhost:3000", "http://64.227.42.104:80", "https://64.227.42.104:80"],
     allowedHeaders: ["ws-header"],
     credentials: true
   }
@@ -29,6 +29,7 @@ const onConnection = (socket) => {
   socketRouter.userConnected(io, socket);
   socketRouter.disconnect(io, socket);
   socketRouter.docEvent(io, socket);
+  socketRouter.artEvent(io, socket);
   socketRouter.chatEvent(io, socket);
 }
 

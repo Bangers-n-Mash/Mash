@@ -3,9 +3,10 @@
 session_start();
 
 if (isset($_SESSION['accountID'])) {
-    include('includes/header_loggedin.php');
+	include('includes/header_loggedin.php');
+	include('includes/chat.php');
 } else {
-    header("Location: /login.php");
+	header("Location: /login.php");
 }
 
 ?>
@@ -83,6 +84,8 @@ if (isset($_SESSION['accountID'])) {
 </div>
 <div class="hidden" id="tmp"></div>
 <div id="popups"></div>
+
+<script src="./js/artwork.js"></script>
 
 <?php
 

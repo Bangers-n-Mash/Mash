@@ -30,6 +30,13 @@ exports.docEvent = (io, socket, next) => {
     });
 }
 
+exports.artEvent = (io, socket, next) => {
+    socket.on('art:event', (payload) => {
+        console.log(payload);
+        socket.broadcast.emit("art:update", payload);
+    });
+}
+
 
 exports.chatEvent = (io, socket, next) => {
     socket.on('chat:message', ({ content, to }) => {

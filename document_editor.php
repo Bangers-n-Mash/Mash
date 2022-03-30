@@ -4,15 +4,13 @@ session_start();
 
 
 include('includes/header.php');
-if (isset($_SESSION['accountID'])) {
-    include('includes/chat.php');
-}
 
 
 if (isset($_SESSION['accountID'])) {
     include('includes/header_loggedin.php');
+    include('includes/chat.php');
 } else {
-    include('includes/header.php');
+    header('Location: /login.php');
 }
 
 ?>
