@@ -55,8 +55,16 @@
             <div class="sb-nav-link-icon"><em class="fas fa-user fa-fw"></em><em class="fas fa-angle-down"></em></div>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="login.php">Login</a>
-            <a class="dropdown-item" href="register.php">Register</a>
+            <a class="dropdown-item" href="user.php">Account</a>
+            <?php
+            if ($_SESSION['account_type'] == "2") {
+            ?>
+              <a class="dropdown-item" href="/admin/admin.php">Admin</a>
+            <?php
+            }
+            ?>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="includes/logout.php">Logout</a>
           </div>
         </li>
       </ul>

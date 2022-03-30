@@ -26,8 +26,7 @@
             </a>
             
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="../../user_login.php">Account</a>
-                <a class="dropdown-item" href="../../booking.php">Bookings</a>
+                <a class="dropdown-item" href="../../user.php">Account</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../../includes/logout.php">Logout</a>
             </div>

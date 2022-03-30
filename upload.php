@@ -1,7 +1,6 @@
 <?php
 
 //upload file
-include('includes/auth_session.php');
 
 $target_dir = "/var/www/html/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -64,7 +63,7 @@ $sql->bind_param("ssssi", $content_type, $content_title, $content_description, $
 $content_type = "picture"; //change to get from file type
 $content_title = $_POST["title"];
 $content_description = $_POST["description"]; 
-$privacyType = $_POST["private"]
+$privacyType = $_POST["artVisibility"]
 $content_file = $target_file;
 $content_likes = 0;
 $content_account_id; //take id of uploader's account
