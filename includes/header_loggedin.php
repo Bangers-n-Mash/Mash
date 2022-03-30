@@ -33,6 +33,7 @@
             Page Links
           </button>
           <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" href="user_content.php">User Content</a>
             <a class="dropdown-item" href="artwork.php">Artwork</a>
             <a class="dropdown-item" href="document_editor.php">Documents</a>
             <a class="dropdown-item" href="file_upload.php">Upload</a>

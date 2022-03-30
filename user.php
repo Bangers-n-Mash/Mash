@@ -27,7 +27,7 @@ if (isset($_SESSION['accountID'])) {
                 <div class="card mb-3">
                     <a href="user_settings.php" role="button" style=" background-color: #212529" class="btn btn-primary btn-lg">Account Settings</a>
                     <a href="user_group.php" role="button" style=" background-color: #212529" class="btn btn-primary btn-lg">Groups</a>
-                    <a href="group_cj.php" role="button" style=" background-color: #212529" class="btn btn-primary btn-lg">Projects</a>
+                    <a href="user_content.php" role="button" style=" background-color: #212529" class="btn btn-primary btn-lg">Projects</a>
                 </div>
                     <!-- Testimonial 2-->
             </div>
