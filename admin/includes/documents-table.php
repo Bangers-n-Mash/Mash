@@ -7,7 +7,7 @@ require('../includes/connect_DB.php');
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table mr-1"></i>
-        Vehicle Table
+        Documents Table
     </div>
     <div class="card-body">
         <div class="table-responsive">

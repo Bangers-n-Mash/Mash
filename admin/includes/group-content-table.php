@@ -27,7 +27,7 @@ require('../includes/connect_DB.php');
                 <tbody>
 
                     <?php
-                    $g = "SELECT * FROM groupart";
+                    $g = "SELECT * FROM grouparts";
                     $n = mysqli_query($link, $g);
                     if (mysqli_num_rows($n) > 0) {
                         while ($row = mysqli_fetch_array($n, MYSQLI_ASSOC)) {
